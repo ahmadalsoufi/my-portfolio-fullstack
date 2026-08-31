@@ -1,3 +1,7 @@
 export default async function HomePage() {
-  return <>HOME SWEAT HOME</>;
+  return (
+    <>
+      <div className=""> HOME SWEAT HOME</div>
+    </>
+  );
 }

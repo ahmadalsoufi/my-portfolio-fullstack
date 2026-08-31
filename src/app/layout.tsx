@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import "./globals.css";
 
+import Navbar from "./components/Navbar";
+
 export const metadata: Metadata = {
   title: "Ahmad Alsoufi | portfolio",
   description: "Welcome to my Next.js application.",
@@ -10,7 +12,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <header className="border-b-2 border-b-blue-300 bg-slate-700 text-slate-100 shadow-md dark:bg-slate-900 print:hidden">
+          <Navbar />
+        </header>
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
