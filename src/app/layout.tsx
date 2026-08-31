@@ -18,7 +18,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
         </header>
         <main className="">{children}</main>
-        <footer className="print:hidden mt-auto">
+        <footer className="print:hidden mt-auto ">
           <Footer />
         </footer>
       </body>
