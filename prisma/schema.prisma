@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model blog {
+  id          Int      @id @default(autoincrement())
+  title       String?  @db.VarChar(255)
+  excerpt     String?  @db.VarChar(255)
+  description String?
+  image       Json?
+  slug        String   @unique @db.VarChar(255)
+  event_date  DateTime @db.Date
+}
+
+model category {
+  id      Int       @id @default(autoincrement())
+  title   String    @unique @db.VarChar(255)
+  project project[]
+}
+
+model project {
+  id          Int       @id @default(autoincrement())
+  title       String?   @db.VarChar(255)
+  description String?
+  image       Json?
+  featured    Boolean   @default(false)
+  slug        String    @unique @db.VarChar(255)
+  url         String?   @unique @db.VarChar(255)
+  category_id Int?
+  category    category? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "project_category_fkey")
+}
