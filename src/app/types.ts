@@ -15,6 +15,7 @@ export type ProjectType = {
       thumbnail: { url: string };
     };
   };
+  category: string;
 };
 
 export type BlogType = {

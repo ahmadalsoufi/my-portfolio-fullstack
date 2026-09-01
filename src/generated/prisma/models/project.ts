@@ -42,6 +42,7 @@ export type ProjectMinAggregateOutputType = {
   slug: string | null
   url: string | null
   excerpt: string | null
+  category: string | null
 }
 
 export type ProjectMaxAggregateOutputType = {
@@ -52,6 +53,7 @@ export type ProjectMaxAggregateOutputType = {
   slug: string | null
   url: string | null
   excerpt: string | null
+  category: string | null
 }
 
 export type ProjectCountAggregateOutputType = {
@@ -63,6 +65,7 @@ export type ProjectCountAggregateOutputType = {
   slug: number
   url: number
   excerpt: number
+  category: number
   _all: number
 }
 
@@ -83,6 +86,7 @@ export type ProjectMinAggregateInputType = {
   slug?: true
   url?: true
   excerpt?: true
+  category?: true
 }
 
 export type ProjectMaxAggregateInputType = {
@@ -93,6 +97,7 @@ export type ProjectMaxAggregateInputType = {
   slug?: true
   url?: true
   excerpt?: true
+  category?: true
 }
 
 export type ProjectCountAggregateInputType = {
@@ -104,6 +109,7 @@ export type ProjectCountAggregateInputType = {
   slug?: true
   url?: true
   excerpt?: true
+  category?: true
   _all?: true
 }
 
@@ -202,6 +208,7 @@ export type ProjectGroupByOutputType = {
   slug: string
   url: string | null
   excerpt: string | null
+  category: string | null
   _count: ProjectCountAggregateOutputType | null
   _avg: ProjectAvgAggregateOutputType | null
   _sum: ProjectSumAggregateOutputType | null
@@ -236,6 +243,7 @@ export type projectWhereInput = {
   slug?: Prisma.StringFilter<"project"> | string
   url?: Prisma.StringNullableFilter<"project"> | string | null
   excerpt?: Prisma.StringNullableFilter<"project"> | string | null
+  category?: Prisma.StringNullableFilter<"project"> | string | null
 }
 
 export type projectOrderByWithRelationInput = {
@@ -247,6 +255,7 @@ export type projectOrderByWithRelationInput = {
   slug?: Prisma.SortOrder
   url?: Prisma.SortOrderInput | Prisma.SortOrder
   excerpt?: Prisma.SortOrderInput | Prisma.SortOrder
+  category?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type projectWhereUniqueInput = Prisma.AtLeast<{
@@ -261,6 +270,7 @@ export type projectWhereUniqueInput = Prisma.AtLeast<{
   image?: Prisma.JsonNullableFilter<"project">
   featured?: Prisma.BoolFilter<"project"> | boolean
   excerpt?: Prisma.StringNullableFilter<"project"> | string | null
+  category?: Prisma.StringNullableFilter<"project"> | string | null
 }, "id" | "slug" | "url">
 
 export type projectOrderByWithAggregationInput = {
@@ -272,6 +282,7 @@ export type projectOrderByWithAggregationInput = {
   slug?: Prisma.SortOrder
   url?: Prisma.SortOrderInput | Prisma.SortOrder
   excerpt?: Prisma.SortOrderInput | Prisma.SortOrder
+  category?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.projectCountOrderByAggregateInput
   _avg?: Prisma.projectAvgOrderByAggregateInput
   _max?: Prisma.projectMaxOrderByAggregateInput
@@ -291,6 +302,7 @@ export type projectScalarWhereWithAggregatesInput = {
   slug?: Prisma.StringWithAggregatesFilter<"project"> | string
   url?: Prisma.StringNullableWithAggregatesFilter<"project"> | string | null
   excerpt?: Prisma.StringNullableWithAggregatesFilter<"project"> | string | null
+  category?: Prisma.StringNullableWithAggregatesFilter<"project"> | string | null
 }
 
 export type projectCreateInput = {
@@ -301,6 +313,7 @@ export type projectCreateInput = {
   slug: string
   url?: string | null
   excerpt?: string | null
+  category?: string | null
 }
 
 export type projectUncheckedCreateInput = {
@@ -312,6 +325,7 @@ export type projectUncheckedCreateInput = {
   slug: string
   url?: string | null
   excerpt?: string | null
+  category?: string | null
 }
 
 export type projectUpdateInput = {
@@ -322,6 +336,7 @@ export type projectUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type projectUncheckedUpdateInput = {
@@ -333,6 +348,7 @@ export type projectUncheckedUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type projectCreateManyInput = {
@@ -344,6 +360,7 @@ export type projectCreateManyInput = {
   slug: string
   url?: string | null
   excerpt?: string | null
+  category?: string | null
 }
 
 export type projectUpdateManyMutationInput = {
@@ -354,6 +371,7 @@ export type projectUpdateManyMutationInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type projectUncheckedUpdateManyInput = {
@@ -365,6 +383,7 @@ export type projectUncheckedUpdateManyInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type projectCountOrderByAggregateInput = {
@@ -376,6 +395,7 @@ export type projectCountOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   url?: Prisma.SortOrder
   excerpt?: Prisma.SortOrder
+  category?: Prisma.SortOrder
 }
 
 export type projectAvgOrderByAggregateInput = {
@@ -390,6 +410,7 @@ export type projectMaxOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   url?: Prisma.SortOrder
   excerpt?: Prisma.SortOrder
+  category?: Prisma.SortOrder
 }
 
 export type projectMinOrderByAggregateInput = {
@@ -400,6 +421,7 @@ export type projectMinOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   url?: Prisma.SortOrder
   excerpt?: Prisma.SortOrder
+  category?: Prisma.SortOrder
 }
 
 export type projectSumOrderByAggregateInput = {
@@ -421,6 +443,7 @@ export type projectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   slug?: boolean
   url?: boolean
   excerpt?: boolean
+  category?: boolean
 }, ExtArgs["result"]["project"]>
 
 export type projectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -432,6 +455,7 @@ export type projectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   slug?: boolean
   url?: boolean
   excerpt?: boolean
+  category?: boolean
 }, ExtArgs["result"]["project"]>
 
 export type projectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -443,6 +467,7 @@ export type projectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   slug?: boolean
   url?: boolean
   excerpt?: boolean
+  category?: boolean
 }, ExtArgs["result"]["project"]>
 
 export type projectSelectScalar = {
@@ -454,9 +479,10 @@ export type projectSelectScalar = {
   slug?: boolean
   url?: boolean
   excerpt?: boolean
+  category?: boolean
 }
 
-export type projectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "image" | "featured" | "slug" | "url" | "excerpt", ExtArgs["result"]["project"]>
+export type projectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "image" | "featured" | "slug" | "url" | "excerpt" | "category", ExtArgs["result"]["project"]>
 
 export type $projectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "project"
@@ -470,6 +496,7 @@ export type $projectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     slug: string
     url: string | null
     excerpt: string | null
+    category: string | null
   }, ExtArgs["result"]["project"]>
   composites: {}
 }
@@ -901,6 +928,7 @@ export interface projectFieldRefs {
   readonly slug: Prisma.FieldRef<"project", 'String'>
   readonly url: Prisma.FieldRef<"project", 'String'>
   readonly excerpt: Prisma.FieldRef<"project", 'String'>
+  readonly category: Prisma.FieldRef<"project", 'String'>
 }
     
 

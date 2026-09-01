@@ -9,6 +9,5 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/blog'
-export type * from './models/category'
 export type * from './models/project'
 export type * from './commonInputTypes'

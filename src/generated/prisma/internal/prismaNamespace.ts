@@ -398,7 +398,6 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   blog: 'blog',
-  category: 'category',
   project: 'project'
 } as const
 
@@ -415,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "blog" | "category" | "project"
+    modelProps: "blog" | "project"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -490,80 +489,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.blogCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BlogCountAggregateOutputType> | number
-        }
-      }
-    }
-    category: {
-      payload: Prisma.$categoryPayload<ExtArgs>
-      fields: Prisma.categoryFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.categoryFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.categoryFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload>
-        }
-        findFirst: {
-          args: Prisma.categoryFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.categoryFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload>
-        }
-        findMany: {
-          args: Prisma.categoryFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload>[]
-        }
-        create: {
-          args: Prisma.categoryCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload>
-        }
-        createMany: {
-          args: Prisma.categoryCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.categoryCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload>[]
-        }
-        delete: {
-          args: Prisma.categoryDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload>
-        }
-        update: {
-          args: Prisma.categoryUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload>
-        }
-        deleteMany: {
-          args: Prisma.categoryDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.categoryUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.categoryUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload>[]
-        }
-        upsert: {
-          args: Prisma.categoryUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoryPayload>
-        }
-        aggregate: {
-          args: Prisma.CategoryAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateCategory>
-        }
-        groupBy: {
-          args: Prisma.categoryGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CategoryGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.categoryCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CategoryCountAggregateOutputType> | number
         }
       }
     }
@@ -693,14 +618,6 @@ export const BlogScalarFieldEnum = {
 export type BlogScalarFieldEnum = (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum]
 
 
-export const CategoryScalarFieldEnum = {
-  id: 'id',
-  title: 'title'
-} as const
-
-export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
-
-
 export const ProjectScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -709,7 +626,8 @@ export const ProjectScalarFieldEnum = {
   featured: 'featured',
   slug: 'slug',
   url: 'url',
-  excerpt: 'excerpt'
+  excerpt: 'excerpt',
+  category: 'category'
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
@@ -990,7 +908,6 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   blog?: Prisma.blogOmit
-  category?: Prisma.categoryOmit
   project?: Prisma.projectOmit
 }
 

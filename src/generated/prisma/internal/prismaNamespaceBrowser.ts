@@ -52,7 +52,6 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   blog: 'blog',
-  category: 'category',
   project: 'project'
 } as const
 
@@ -85,14 +84,6 @@ export const BlogScalarFieldEnum = {
 export type BlogScalarFieldEnum = (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum]
 
 
-export const CategoryScalarFieldEnum = {
-  id: 'id',
-  title: 'title'
-} as const
-
-export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
-
-
 export const ProjectScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -101,7 +92,8 @@ export const ProjectScalarFieldEnum = {
   featured: 'featured',
   slug: 'slug',
   url: 'url',
-  excerpt: 'excerpt'
+  excerpt: 'excerpt',
+  category: 'category'
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]

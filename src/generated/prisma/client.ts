@@ -47,11 +47,6 @@ export { Prisma }
  */
 export type blog = Prisma.blogModel
 /**
- * Model category
- * 
- */
-export type category = Prisma.categoryModel
-/**
  * Model project
  * 
  */

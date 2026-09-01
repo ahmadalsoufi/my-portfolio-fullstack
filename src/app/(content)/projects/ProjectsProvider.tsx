@@ -1,7 +1,7 @@
 "use server";
 
-import { prisma } from "../../../lib/prisma";
-import { ProjectType } from "../types";
+import { prisma } from "../../../../lib/prisma";
+import { ProjectType } from "../../types";
 
 export async function getProjects() {
   const projects = await prisma.project.findMany();

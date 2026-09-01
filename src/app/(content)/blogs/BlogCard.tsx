@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { BlogType } from "../types";
+import { BlogType } from "../../types";
 
 const BlogCard = ({ blog }: { blog: BlogType }) => {
   return (
