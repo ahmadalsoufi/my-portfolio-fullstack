@@ -16,7 +16,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className="text-slate-700 dark:bg-slate-700 dark:text-slate-50"
     >
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen">
         <header className="border-b-2 border-b-blue-300 bg-slate-700 text-slate-100 shadow-md dark:bg-slate-900 print:hidden">
           <Navbar />
         </header>
