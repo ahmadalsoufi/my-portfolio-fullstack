@@ -709,7 +709,7 @@ export const ProjectScalarFieldEnum = {
   featured: 'featured',
   slug: 'slug',
   url: 'url',
-  category_id: 'category_id'
+  excerpt: 'excerpt'
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]

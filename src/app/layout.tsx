@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className="text-slate-700 dark:bg-slate-700 dark:text-slate-50"
+    >
       <body className="min-h-screen flex flex-col">
         <header className="border-b-2 border-b-blue-300 bg-slate-700 text-slate-100 shadow-md dark:bg-slate-900 print:hidden">
           <Navbar />
