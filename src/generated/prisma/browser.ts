@@ -27,3 +27,8 @@ export type blog = Prisma.blogModel
  * 
  */
 export type project = Prisma.projectModel
+/**
+ * Model messages
+ * 
+ */
+export type messages = Prisma.messagesModel

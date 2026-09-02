@@ -28,3 +28,11 @@ model project {
   excerpt     String? @db.VarChar(255)
   category    String? @db.VarChar(50)
 }
+
+model messages {
+  id        Int     @id @default(autoincrement())
+  full_name String  @db.VarChar(100)
+  email     String  @db.VarChar(255)
+  subject   String? @db.VarChar(100)
+  message   String  @db.VarChar(2000)
+}

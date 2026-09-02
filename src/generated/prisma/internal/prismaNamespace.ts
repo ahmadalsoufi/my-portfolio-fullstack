@@ -398,7 +398,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   blog: 'blog',
-  project: 'project'
+  project: 'project',
+  messages: 'messages'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -414,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "blog" | "project"
+    modelProps: "blog" | "project" | "messages"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -566,6 +567,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    messages: {
+      payload: Prisma.$messagesPayload<ExtArgs>
+      fields: Prisma.messagesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.messagesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.messagesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload>
+        }
+        findFirst: {
+          args: Prisma.messagesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.messagesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload>
+        }
+        findMany: {
+          args: Prisma.messagesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload>[]
+        }
+        create: {
+          args: Prisma.messagesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload>
+        }
+        createMany: {
+          args: Prisma.messagesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.messagesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload>[]
+        }
+        delete: {
+          args: Prisma.messagesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload>
+        }
+        update: {
+          args: Prisma.messagesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload>
+        }
+        deleteMany: {
+          args: Prisma.messagesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.messagesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.messagesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload>[]
+        }
+        upsert: {
+          args: Prisma.messagesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$messagesPayload>
+        }
+        aggregate: {
+          args: Prisma.MessagesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMessages>
+        }
+        groupBy: {
+          args: Prisma.messagesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MessagesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.messagesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MessagesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -631,6 +706,17 @@ export const ProjectScalarFieldEnum = {
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+export const MessagesScalarFieldEnum = {
+  id: 'id',
+  full_name: 'full_name',
+  email: 'email',
+  subject: 'subject',
+  message: 'message'
+} as const
+
+export type MessagesScalarFieldEnum = (typeof MessagesScalarFieldEnum)[keyof typeof MessagesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -909,6 +995,7 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   blog?: Prisma.blogOmit
   project?: Prisma.projectOmit
+  messages?: Prisma.messagesOmit
 }
 
 /* Types for Logging */

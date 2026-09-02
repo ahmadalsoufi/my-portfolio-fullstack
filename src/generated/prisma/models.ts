@@ -10,4 +10,5 @@
  */
 export type * from './models/blog'
 export type * from './models/project'
+export type * from './models/messages'
 export type * from './commonInputTypes'
