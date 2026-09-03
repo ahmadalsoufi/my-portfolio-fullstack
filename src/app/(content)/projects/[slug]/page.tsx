@@ -6,6 +6,8 @@ import { useParams } from "next/navigation";
 
 // types
 import { ProjectType } from "@/app/types";
+import { DiVim } from "react-icons/di";
+import ProjectSkeleton from "./skeleton";
 
 const ProjectDetails = () => {
   const [project, setProject] = useState<ProjectType | null>(null);
@@ -27,7 +29,7 @@ const ProjectDetails = () => {
   return (
     <>
       {project ? (
-        <section className="space-y-7 bg-slate-50 py-8 text-center shadow-md sm:m-5 sm:rounded-lg sm:text-start dark:bg-slate-800 dark:text-slate-100">
+        <section className="space-y-7 bg-slate-50 py-8 text-center shadow-md sm:m-5 sm:rounded-lg sm:text-start dark:bg-slate-800 dark:text-slate-100 animation-fade-in">
           <div className="flex flex-col px-5 sm:px-10">
             <h1 className="text-2xl/relaxed font-bold capitalize sm:text-3xl/loose">
               {project.title}
@@ -63,7 +65,7 @@ const ProjectDetails = () => {
           </div>
         </section>
       ) : (
-        <div>laoding...</div>
+        <ProjectSkeleton />
       )}
     </>
   );

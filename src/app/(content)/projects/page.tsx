@@ -9,6 +9,7 @@ import { ProjectType } from "../../types";
 import CategoryFilter from "../../components/CategoryFilter";
 import SearchFilter from "../../components/SearchFilter";
 import Pagination from "../../components/Pagination";
+import ProjectsSkeleton from "./skeleton";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<ProjectType[] | null>(null);
@@ -76,7 +77,7 @@ export default function ProjectsPage() {
         </div>
 
         {currentProjects ? (
-          <div className="my-4 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] sm:grid-cols-2 gap-3 gap-y-4">
+          <div className="my-4 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] sm:grid-cols-2 gap-3">
             {currentProjects.length > 0 ? (
               currentProjects.map((project: any) => (
                 <ProjectCard key={project.slug} project={project} />
@@ -88,7 +89,7 @@ export default function ProjectsPage() {
             )}
           </div>
         ) : (
-          <div>loading...</div>
+          <ProjectsSkeleton count={1} />
         )}
 
         <Pagination

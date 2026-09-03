@@ -6,7 +6,7 @@ const BlogCard = ({ blog }: { blog: BlogType }) => {
   return (
     <>
       <Link href={`/blogs/${blog.slug}`}>
-        <div className="cursor-pointer rounded-2xl bg-slate-700 p-10 text-sm text-blue-400 shadow-md transition-transform duration-300 hover:scale-98 dark:bg-slate-800">
+        <div className="cursor-pointer rounded-2xl bg-slate-700 p-10 text-sm text-blue-400 shadow-md transition-transform duration-300 hover:scale-98 dark:bg-slate-800 animation-fade-in">
           <div>
             <h1 className="truncate capitalize">{blog.title}</h1>
             {/* could use line-clamp-num for more lines */}

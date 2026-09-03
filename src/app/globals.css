@@ -34,6 +34,8 @@ body {
   @apply: bg-slate-50;
 }
 
+/* apply waving animation for loading content. */
+
 @media print {
   @page {
     size: A4;
@@ -43,5 +45,28 @@ body {
   body {
     margin: 0;
     padding: 0;
+  }
+}
+
+/* custom animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@utility animation-fade-in {
+  animation: fadeIn 500ms ease-out forwards;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }

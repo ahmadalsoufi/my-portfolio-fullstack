@@ -10,6 +10,7 @@ import { getBlogs } from "./BlogsProvider";
 import SearchFilter from "../../components/SearchFilter";
 import OrderFilter from "../../components/OrderFilter";
 import Pagination from "../../components/Pagination";
+import BlogsSkeleton from "./skeleton";
 
 const BlogsPage = () => {
   const [blogs, setBlogs] = useState<BlogType[] | null>(null);
@@ -91,7 +92,7 @@ const BlogsPage = () => {
             )}
           </div>
         ) : (
-          <div>loading...</div>
+          <BlogsSkeleton count={blogsPerPage} onHome={false} />
         )}
 
         <Pagination
