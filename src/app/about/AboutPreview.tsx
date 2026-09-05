@@ -13,7 +13,7 @@ const AboutPreview = ({ detailed = false }: { detailed: boolean }) => {
             <img
               src="profile.jpeg"
               alt="Ahmad Saed"
-              className={`${detailed ? "h-54 w-54 sm:h-55 sm:w-55" : "h-45 w-45 sm:h-50 sm:w-50"} mb-3 shrink-0 rounded-full border-4 border-blue-600 object-cover shadow-md`}
+              className={`bg-slate-600 ${detailed ? "h-54 w-54 sm:h-55 sm:w-55" : "h-45 w-45 sm:h-50 sm:w-50"} mb-3 shrink-0 rounded-full border-4 border-blue-600 object-cover shadow-md`}
             />
 
             <div className="">
@@ -71,7 +71,9 @@ const AboutPreview = ({ detailed = false }: { detailed: boolean }) => {
                   "JavaScript",
                   "TypeScript",
                   "REACT",
-                  "ROUTER V7 FRAMEWORK",
+                  "NEXT.JS",
+                  "Postgresql",
+                  "PRISMA ORM",
                   "RESTful",
                   "STRAPI (CMS)",
                   "NEON (serverless db)",
@@ -81,20 +83,6 @@ const AboutPreview = ({ detailed = false }: { detailed: boolean }) => {
                   <li
                     key={item}
                     className="rounded-lg bg-slate-700 px-3 py-2 text-sm font-medium tracking-wide text-slate-100 shadow-md"
-                  >
-                    {item.toUpperCase()}
-                  </li>
-                ))}
-              </ul>
-
-              <h2 className="mb-2 text-xl font-medium sm:text-2xl dark:text-slate-100">
-                Tools and technologies I'm currently learning
-              </h2>
-              <ul className="flex flex-wrap justify-center gap-2 sm:justify-start">
-                {["Next.js", "Postgresql", "Prisma ORM"].map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-lg bg-blue-500 px-3 py-2 text-sm font-medium tracking-wide text-slate-100 shadow-md"
                   >
                     {item.toUpperCase()}
                   </li>

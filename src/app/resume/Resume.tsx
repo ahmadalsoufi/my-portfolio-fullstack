@@ -4,11 +4,10 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Ahmad Alsoufi | Resume",
-  description:
-    "Ahmad Alsoufi | Web developer that uses modern technologies such as React Framework, and React Router v7 Framework.",
+  description: "Ahmad Alsoufi | Web developer.",
   authors: {
     name: "Ahmad Alsoufi",
-    url: "https://github.com/ahmadalsoufi",
+    url: "https://GitHub.com/ahmadalsoufi",
   },
 };
 
@@ -18,8 +17,8 @@ const myInfo = [
     href: "https://www.linkedin.com/in/ahmadalsoufi/",
   },
   {
-    label: "github.com/ahmadalsoufi",
-    href: "https://github.com/ahmadalsoufi",
+    label: "GitHub.com/ahmadalsoufi",
+    href: "https://GitHub.com/ahmadalsoufi",
   },
   {
     label: "ahmad.s.alsoufi@gmail.com",
@@ -27,37 +26,53 @@ const myInfo = [
   },
 ];
 
+const coursework = [];
+
 const skills = {
-  frontend: [
+  fullstack: [
     "HTML",
     "CSS",
     "Tailwind CSS",
     "JavaScript",
     "TypeScript",
     "React",
-    "Router v7 - framework mode",
+    "Next.js",
+    "Postgresql",
+    "prisma orm",
   ],
   tools: [
     "Git",
-    "Github",
-    "headless CMS (Strapi)",
-    "serverless DB (Neon)",
+    "GitHub",
+    "Strapi (CMS)",
+    "Neon (Serverless DB)",
     "cloudinary",
     "vercel",
-    "render",
   ],
-  soft: ["Problem Solving", "Continuous learning", "Teamwork & collaboration"],
 };
 const languages = ["arabic", "english"];
 
 const projects = [
   {
-    title: "Personal Portfolio | Full-Stack Web App",
+    title: "Personal Portfolio",
     texts: [
-      "Built a full-stack personal portfolio using React Router v7 Framework Mode.",
-      "Integrated Strapi for content management and Neon for persistent database storage.",
-      "Implemented responsive layouts with Tailwind CSS and server-rendered (SSR) pages.",
+      "Architectured a full stack web application using next.js",
+      "Integrated Prisma ORM for content management and Neon for persistent database storage.",
+      "Built a contact form using Next.js server actions and Resend to process and store submissions.",
+      "Designed smooth animated skeletons for a smoother UX.",
+      "Implemented responsive layouts, and appealing designs with Tailwind CSS.",
     ],
+    tools: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Tailwind CSS",
+      "Neon",
+      "Resend",
+    ],
+    fullstack: false,
+    url: "https://ahmadalsoufi.com",
+    github: "https://GitHub.com/ahmadalsoufi/my-portfolio-fullstack",
   },
   {
     title: "Custom Landing Page",
@@ -66,6 +81,10 @@ const projects = [
       "Appealing and smooth behavior with features such as custom lazy loading added via Vanilla JavaScript.",
       "Focused on appealing user experience (UX) and user interface (UI).",
     ],
+    fullstack: false,
+    url: null,
+    github: "https://GitHub.com/ahmadalsoufi/landing-page",
+    tools: ["HTML", "CSS", "JavaScript"],
   },
 ];
 
@@ -78,18 +97,18 @@ const Resume = () => {
       >
         print resume
       </button>
-      <main className="box-border max-w-[210mm] bg-slate-50 p-[10mm] text-sm shadow-md sm:rounded-lg sm:p-[15mm] print:m-0 print:w-[210mm] print:overflow-hidden print:rounded-none print:p-[10mm] print:shadow-none">
+      <main className="box-border w-[210mm] bg-slate-50 p-[10mm] sm:p-[12mm] text-sm shadow-md sm:rounded-lg print:m-0 print:w-[210mm] print:overflow-hidden print:rounded-none print:p-[12mm] print:shadow-none">
         <div className="mb-5">
           <div className="border-b-md mx-auto mb-2 w-fit py-[1mm] text-center">
             <h1 className="text-3xl/tight font-bold capitalize min-[500px]:text-4xl/tight sm:text-5xl/tight print:text-5xl/tight">
               Ahmad Alsoufi
             </h1>
-            <h2 className="text-xl/relaxed font-medium capitalize sm:text-2xl/relaxed">
+            <h2 className="text-xl/relaxed font-medium capitalize sm:text-2xl/relaxed print:text-xl/relaxed">
               Web Developer
             </h2>
           </div>
 
-          <ul className="mb-5 flex flex-col items-center justify-center space-y-2 gap-x-2 sm:mb-10 md:flex-row md:space-y-0 print:flex-row print:space-y-0">
+          <ul className="mb-5 flex flex-col items-center justify-center space-y-2 gap-x-2 md:flex-row md:space-y-0 print:flex-row print:space-y-0">
             {myInfo.map((info, index) => (
               <li key={info.label}>
                 <a
@@ -110,8 +129,10 @@ const Resume = () => {
 
           <p className="text-center text-sm sm:text-start print:text-start">
             I graduated with an associate degree in Computer Programming. I
-            specialize in web development with a focus on React Framework and
-            full-stack frameworks such as React Router v7 Framework mode.
+            specialize in web development with a focus on modern technologies
+            such as React and Next.js, I work with Prisma ORM and PostgreSQL for
+            relational database development, and use tools including Git,
+            GitHub, and Vercel to manage and deploy full stack applications.
           </p>
         </div>
 
@@ -124,7 +145,7 @@ const Resume = () => {
           <div className="grid space-y-1.5">
             {Object.entries(skills).map((skillsPairs) => (
               <div key={skillsPairs[0][0]}>
-                <h3 className="text-lg/relaxed font-medium capitalize">
+                <h3 className="mt-1 text-lg/relaxed font-medium capitalize">
                   {skillsPairs[0]}
                 </h3>
 
@@ -147,13 +168,39 @@ const Resume = () => {
             Projects
           </h2>
 
-          <ul>
+          <ul className="space-y-3">
             {projects.map((project) => (
               <li key={project.title}>
-                <h3 className="text-lg/relaxed font-medium capitalize">
-                  {project.title}
+                <h3 className="mt-1 text-xl/normal font-medium capitalize flex flex-col sm:flex-row sm:justify-between sm:items-center print:flex-row print:justify-between print:items-center">
+                  {project.title}{" "}
+                  <div className="text-blue-500 text-base mb-2 sm:mb-0 print:mb-0">
+                    {project.url && (
+                      <>
+                        <a target="_blank" href={project.url}>
+                          View live
+                        </a>
+                        <span className="text-slate-500"> | </span>
+                      </>
+                    )}
+                    <a target="_blank" href={project.github}>
+                      GitHub
+                    </a>
+                  </div>
                 </h3>
+                <ul className="flex gap-2 text-sm/tight mb-3 flex-wrap">
+                  {project.tools.map((tool, i) => (
+                    <li key={tool} className="font-medium tracking-wider">
+                      {tool}
+                      {i + 1 < project.tools.length ? "," : "."}
+                    </li>
+                  ))}
+                </ul>
 
+                {project.fullstack ? (
+                  <h4 className="text-sm/normal tracking-wide font-medium capitalize text-slate-500">
+                    Full-stack Web Application
+                  </h4>
+                ) : null}
                 <ul>
                   {project.texts.map((text) => (
                     <li key={text} className="ml-5 list-disc text-sm/relaxed">
@@ -173,7 +220,7 @@ const Resume = () => {
           </h2>
 
           <div>
-            <h3 className="text-lg/normal font-medium capitalize">
+            <h3 className="mt-1 text-lg/normal font-medium capitalize">
               Associate degree in <span>Computer Programming</span>
             </h3>
 
