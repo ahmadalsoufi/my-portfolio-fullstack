@@ -9,7 +9,10 @@
 * 🟢 You can import this file directly.
 */
 
+export const CategoriesNames = {
+  Fullstack: 'Fullstack',
+  Frontend: 'Frontend',
+  Backend: 'Backend'
+} as const
 
-
-// This file is empty because there are no enums in the schema.
-export {}
+export type CategoriesNames = (typeof CategoriesNames)[keyof typeof CategoriesNames]

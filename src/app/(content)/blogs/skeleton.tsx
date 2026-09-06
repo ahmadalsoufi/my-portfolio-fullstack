@@ -1,6 +1,6 @@
 const BlogsSkeleton = ({
   count,
-  onHome = false, // Changing its design on homepage.
+  onHome = false,
 }: {
   count: number;
   onHome: boolean;

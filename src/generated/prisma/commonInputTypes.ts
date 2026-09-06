@@ -193,12 +193,29 @@ export type BoolFilter<$PrismaModel = never> = {
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
 }
 
+export type EnumCategoriesNamesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriesNames | Prisma.EnumCategoriesNamesFieldRefInput<$PrismaModel>
+  in?: $Enums.CategoriesNames[] | Prisma.ListEnumCategoriesNamesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CategoriesNames[] | Prisma.ListEnumCategoriesNamesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCategoriesNamesFilter<$PrismaModel> | $Enums.CategoriesNames
+}
+
 export type BoolWithAggregatesFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
   not?: Prisma.NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedBoolFilter<$PrismaModel>
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
+}
+
+export type EnumCategoriesNamesWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriesNames | Prisma.EnumCategoriesNamesFieldRefInput<$PrismaModel>
+  in?: $Enums.CategoriesNames[] | Prisma.ListEnumCategoriesNamesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CategoriesNames[] | Prisma.ListEnumCategoriesNamesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCategoriesNamesWithAggregatesFilter<$PrismaModel> | $Enums.CategoriesNames
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCategoriesNamesFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCategoriesNamesFilter<$PrismaModel>
 }
 
 export type NestedIntFilter<$PrismaModel = never> = {
@@ -366,12 +383,29 @@ export type NestedBoolFilter<$PrismaModel = never> = {
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
 }
 
+export type NestedEnumCategoriesNamesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriesNames | Prisma.EnumCategoriesNamesFieldRefInput<$PrismaModel>
+  in?: $Enums.CategoriesNames[] | Prisma.ListEnumCategoriesNamesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CategoriesNames[] | Prisma.ListEnumCategoriesNamesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCategoriesNamesFilter<$PrismaModel> | $Enums.CategoriesNames
+}
+
 export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
   not?: Prisma.NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedBoolFilter<$PrismaModel>
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
+}
+
+export type NestedEnumCategoriesNamesWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriesNames | Prisma.EnumCategoriesNamesFieldRefInput<$PrismaModel>
+  in?: $Enums.CategoriesNames[] | Prisma.ListEnumCategoriesNamesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CategoriesNames[] | Prisma.ListEnumCategoriesNamesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCategoriesNamesWithAggregatesFilter<$PrismaModel> | $Enums.CategoriesNames
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCategoriesNamesFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCategoriesNamesFilter<$PrismaModel>
 }
 
 

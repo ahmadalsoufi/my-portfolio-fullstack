@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import { getProjects } from "./ProjectsProvider";
+import { getProjects, getCategories, countProjects } from "./ProjectsProvider";
+
+// components
 import ProjectCard from "./ProjectCard";
 
 // types
@@ -13,51 +15,85 @@ import ProjectsSkeleton from "./skeleton";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<ProjectType[] | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [curPage, setCurPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [curCategory, setCurCategory] = useState<string>("All");
+  const [categories, setCategories] = useState<string[]>([]);
+  const projectsPerPage = 4;
 
-  // get data
+  useEffect(() => {
+    setProjects(null);
+  }, [searchQuery]);
+
   useEffect(() => {
     async function load() {
       try {
-        const projects: ProjectType[] | null = await getProjects();
-        setProjects(projects);
+        let categories = await getCategories();
+        const allCategories = [
+          "All",
+          ...categories.map((category) => category.category),
+        ];
+
+        setCategories(allCategories);
       } catch (err) {
-        if (err instanceof Error) console.error(err.message);
+        if (err instanceof Error) throw new Error(err.message);
       }
     }
 
     load();
   }, []);
 
-  // filter by category
-  const [curCategory, setCurCategory] = useState("All");
+  useEffect(() => {
+    async function load() {
+      try {
+        const projects: ProjectType[] | null = await getProjects(
+          curPage,
+          projectsPerPage,
+          searchQuery,
+          curCategory,
+        );
 
-  const categories = [
-    "All",
-    ...new Set(projects?.map((project) => project.category)),
-  ];
+        const totalPages = Math.ceil(
+          (await countProjects(searchQuery, curCategory)) / projectsPerPage,
+        );
 
-  const projectsByCategory = projects?.filter((project) =>
-    curCategory === "All" ? projects : project.category === curCategory,
-  );
+        setTotalPages(totalPages);
+        setProjects(projects);
+      } catch (err) {
+        if (err instanceof Error) throw new Error(err.message);
+      }
+    }
 
-  // filter by search
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const projectsBySearch = projects?.filter(
-    (project) =>
-      project.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.excerpt?.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+    const timer = setTimeout(() => {
+      load();
+    }, 500);
 
-  // pagination
-  const [curPage, setCurPage] = useState(1);
-  const projectsPerPage = 4;
-  const totalPages = projectsBySearch
-    ? Math.ceil(projectsBySearch?.length / projectsPerPage)
-    : 0;
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
 
-  const lastProject = curPage * projectsPerPage;
-  const firstProject = lastProject - projectsPerPage;
-  const currentProjects = projectsBySearch?.slice(firstProject, lastProject);
+  useEffect(() => {
+    async function load() {
+      try {
+        const projects: ProjectType[] | null = await getProjects(
+          curPage,
+          projectsPerPage,
+          searchQuery,
+          curCategory,
+        );
+
+        const totalPages = Math.ceil(
+          (await countProjects(searchQuery, curCategory)) / projectsPerPage,
+        );
+
+        setTotalPages(totalPages);
+        setProjects(projects);
+      } catch (err) {
+        if (err instanceof Error) throw new Error(err.message);
+      }
+    }
+    load();
+  }, [curPage, curCategory]);
 
   return (
     <>
@@ -65,7 +101,6 @@ export default function ProjectsPage() {
         <h1 className="my-5 text-3xl font-medium dark:text-slate-50">
           My Projects
         </h1>
-
         <div className="mb-5 flex flex-col items-center gap-x-4 gap-y-4 sm:flex-row">
           <SearchFilter search={searchQuery} setSearch={setSearchQuery} />
 
@@ -76,27 +111,29 @@ export default function ProjectsPage() {
           />
         </div>
 
-        {currentProjects ? (
-          <div className="my-4 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] sm:grid-cols-2 gap-3">
-            {currentProjects.length > 0 ? (
-              currentProjects.map((project: any) => (
-                <ProjectCard key={project.slug} project={project} />
-              ))
+        {projects ? (
+          <div className="flex flex-col">
+            {projects.length > 0 ? (
+              <div className="my-4 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] sm:grid-cols-2 gap-3">
+                {projects.map((project) => (
+                  <ProjectCard key={project.slug} project={project} />
+                ))}
+              </div>
             ) : (
               <p className="text-center text-slate-700 dark:text-slate-50">
                 No results found.
               </p>
             )}
+
+            <Pagination
+              totalPages={totalPages}
+              curPage={curPage}
+              setCurPage={setCurPage}
+            />
           </div>
         ) : (
-          <ProjectsSkeleton count={1} />
+          <ProjectsSkeleton count={4} />
         )}
-
-        <Pagination
-          totalPages={totalPages}
-          curPage={curPage}
-          setCurPage={setCurPage}
-        />
       </section>
     </>
   );

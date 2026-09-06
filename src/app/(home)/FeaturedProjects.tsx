@@ -1,10 +1,8 @@
 import ProjectCard from "../(content)/projects/ProjectCard";
-import { getProjects } from "../(content)/projects/ProjectsProvider";
+import { getFeaturedProjects } from "../(content)/projects/ProjectsProvider";
 
 export async function FeaturedProjects() {
-  const featuredProjects = (await getProjects())?.filter(
-    (project) => project.featured,
-  );
+  const featuredProjects = await getFeaturedProjects();
 
   return (
     <>

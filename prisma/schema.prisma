@@ -18,15 +18,15 @@ model blog {
 }
 
 model project {
-  id          Int     @id @default(autoincrement())
-  title       String? @db.VarChar(255)
+  id          Int             @id @default(autoincrement())
+  title       String?         @db.VarChar(255)
   description String?
   image       Json?
-  featured    Boolean @default(false)
-  slug        String  @unique @db.VarChar(255)
-  url         String? @unique @db.VarChar(255)
-  excerpt     String? @db.VarChar(255)
-  category    String? @db.VarChar(50)
+  featured    Boolean         @default(false)
+  slug        String          @unique @db.VarChar(255)
+  url         String?         @unique @db.VarChar(255)
+  excerpt     String?         @db.VarChar(255)
+  category    CategoriesNames
 }
 
 model messages {
@@ -35,4 +35,10 @@ model messages {
   email     String  @db.VarChar(255)
   subject   String? @db.VarChar(100)
   message   String  @db.VarChar(2000)
+}
+
+enum CategoriesNames {
+  Fullstack
+  Frontend
+  Backend
 }

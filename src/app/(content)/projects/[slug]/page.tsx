@@ -6,7 +6,6 @@ import { useParams } from "next/navigation";
 
 // types
 import { ProjectType } from "@/app/types";
-import { DiVim } from "react-icons/di";
 import ProjectSkeleton from "./skeleton";
 
 const ProjectDetails = () => {

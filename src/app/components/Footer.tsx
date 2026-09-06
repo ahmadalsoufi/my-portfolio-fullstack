@@ -1,7 +1,6 @@
 import { MdEmail } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { BsLinkedin } from "react-icons/bs";
-import { SiDevbox } from "react-icons/si";
 
 const Footer = () => {
   const myInfo = [

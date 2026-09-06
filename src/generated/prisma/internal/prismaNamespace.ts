@@ -830,6 +830,20 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'CategoriesNames'
+ */
+export type EnumCategoriesNamesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoriesNames'>
+    
+
+
+/**
+ * Reference to a field of type 'CategoriesNames[]'
+ */
+export type ListEnumCategoriesNamesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoriesNames[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>

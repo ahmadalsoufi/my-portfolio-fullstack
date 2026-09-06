@@ -1,11 +1,13 @@
+"use client";
+
 const Pagination = ({
-  totalPages,
   setCurPage,
   curPage,
+  totalPages,
 }: {
-  totalPages: number;
   setCurPage: React.Dispatch<React.SetStateAction<number>>;
   curPage: number;
+  totalPages: number;
 }) => {
   if (totalPages <= 1) return;
 

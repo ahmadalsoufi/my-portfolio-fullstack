@@ -9,6 +9,7 @@ import { IoDocumentText } from "react-icons/io5";
 import { LatestPosts } from "./LatestPosts";
 import { FeaturedProjects } from "./FeaturedProjects";
 import { Suspense } from "react";
+import { getFeaturedProjects } from "../(content)/projects/ProjectsProvider";
 
 export default async function HomePage() {
   return (

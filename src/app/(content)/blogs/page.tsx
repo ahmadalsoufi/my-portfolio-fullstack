@@ -1,67 +1,79 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+
+// types
+import { BlogType } from "../../types";
+import { getBlogs, countBlogs } from "./BlogsProvider";
 
 // components
 import BlogCard from "./BlogCard";
 
-// types
-import { BlogType } from "../../types";
-import { getBlogs } from "./BlogsProvider";
+// filter components
 import SearchFilter from "../../components/SearchFilter";
 import OrderFilter from "../../components/OrderFilter";
 import Pagination from "../../components/Pagination";
+
+// loading effect
 import BlogsSkeleton from "./skeleton";
 
 const BlogsPage = () => {
+  const initialMount = useRef(true);
   const [blogs, setBlogs] = useState<BlogType[] | null>(null);
+  const [curPage, setCurPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [order, setOrder] = useState("newest");
+  const options = ["Newest", "Oldest"];
+  const blogsPerPage = 4;
 
-  // get data
+  useEffect(() => {
+    setBlogs(null);
+  }, [searchQuery]);
+
   useEffect(() => {
     async function load() {
       try {
-        const blogs = await getBlogs();
+        const [blogs, totalPages] = await Promise.all([
+          getBlogs(curPage, blogsPerPage, order, searchQuery),
+          countBlogs(searchQuery).then((res) => Math.ceil(res / blogsPerPage)),
+        ]);
+
         setBlogs(blogs);
-      } catch (err) {}
+        setTotalPages(totalPages);
+      } catch (err) {
+        if (err instanceof Error) throw new Error(err.message);
+      }
+    }
+
+    const timer = setTimeout(() => {
+      load();
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    if (initialMount.current) {
+      initialMount.current = false;
+      return;
+    }
+
+    async function load() {
+      try {
+        const [blogs, totalPages] = await Promise.all([
+          getBlogs(curPage, blogsPerPage, order, searchQuery),
+          countBlogs(searchQuery).then((res) => Math.ceil(res / blogsPerPage)),
+        ]);
+
+        setBlogs(blogs);
+        setTotalPages(totalPages);
+      } catch (err) {
+        if (err instanceof Error) throw new Error(err.message);
+      }
     }
 
     load();
-  }, []);
-
-  // filter by search
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const blogsBySearch = blogs?.filter(
-    (blog) =>
-      blog.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      blog.excerpt?.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
-
-  // filter by order
-  const [order, setOrder] = useState("newest");
-  const options = ["Newest", "Oldest"];
-  const blogsByOrder = blogsBySearch?.slice().sort((a, b) => {
-    const aDate = new Date(a.event_date).getTime();
-    const bDate = new Date(b.event_date).getTime();
-
-    switch (order.toLowerCase()) {
-      case "newest":
-        return bDate - aDate;
-      case "oldest":
-        return aDate - bDate;
-    }
-
-    return 0;
-  });
-
-  // pagination
-  const [curPage, setCurPage] = useState(1);
-  const blogsPerPage = 4;
-  const totalPages = blogsByOrder
-    ? Math.ceil(blogsByOrder?.length / blogsPerPage)
-    : 0;
-
-  const lastBlog = curPage * blogsPerPage;
-  const firstBlog = lastBlog - blogsPerPage;
-  const currentBlogs = blogsByOrder?.slice(firstBlog, lastBlog);
+  }, [curPage, order]);
 
   return (
     <>
@@ -81,25 +93,29 @@ const BlogsPage = () => {
           <OrderFilter order={order} setOrder={setOrder} options={options} />
         </div>
 
-        {currentBlogs ? (
-          <div className="flex flex-col gap-y-5">
-            {currentBlogs.length > 0 ? (
-              currentBlogs?.map((blog) => (
-                <BlogCard key={blog.id} blog={blog} />
-              ))
+        {blogs ? (
+          <div className="flex flex-col">
+            {blogs.length > 0 ? (
+              <div className="flex flex-col gap-y-5">
+                {blogs.map((blog) => (
+                  <BlogCard key={blog.id} blog={blog} />
+                ))}
+              </div>
             ) : (
-              <div>no results were found.</div>
+              <p className="text-center text-slate-700 dark:text-slate-50">
+                No results found.
+              </p>
             )}
+
+            <Pagination
+              totalPages={totalPages}
+              curPage={curPage}
+              setCurPage={setCurPage}
+            />
           </div>
         ) : (
           <BlogsSkeleton count={blogsPerPage} onHome={false} />
         )}
-
-        <Pagination
-          totalPages={totalPages}
-          curPage={curPage}
-          setCurPage={setCurPage}
-        />
       </div>
     </>
   );

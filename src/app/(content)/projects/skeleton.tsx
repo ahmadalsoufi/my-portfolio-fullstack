@@ -2,9 +2,9 @@ const ProjectsSkeleton = ({ count }: { count: number }) => {
   return (
     <>
       <section className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] sm:grid-cols-2 gap-3">
-        {Array.from({ length: count }, () => (
+        {Array.from({ length: count }, (_, i) => (
           <div
-            key={count + 1}
+            key={i + 1}
             className="rounded-2xl shadow-md transition-transform duration-300 animate-pulse"
           >
             <div className="h-40 w-full rounded-tl-2xl rounded-tr-2xl bg-slate-300 rounded-sm"></div>

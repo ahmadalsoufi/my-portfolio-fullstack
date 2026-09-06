@@ -3,8 +3,6 @@ import Link from "next/link";
 // react-icons
 import { FaStar } from "react-icons/fa";
 
-// types
-
 const ProjectCard = ({ project }: { project: any }) => {
   return (
     <Link href={`/projects/${project.slug}`}>
@@ -13,7 +11,7 @@ const ProjectCard = ({ project }: { project: any }) => {
           {project.featured && <FaStar />}
         </span>
         <img
-          src={project.image.url}
+          src={project.image?.url}
           className="inline-block h-40 w-full rounded-tl-2xl rounded-tr-2xl bg-cover bg-center object-cover"
           alt={project.title}
         />

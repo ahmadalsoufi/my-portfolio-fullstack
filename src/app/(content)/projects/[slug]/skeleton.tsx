@@ -3,7 +3,6 @@ import GoBackBtn from "@/app/components/GoBackBtn";
 const ProjectSkeleton = () => {
   return (
     <>
-      {/* Check this, animate-pulse, or animations overall are only given to the parent and then it applies to nested children. */}
       <section className="space-y-7 bg-slate-50 py-8 shadow-md sm:m-5 sm:rounded-lg sm:text-start dark:bg-slate-800 animate-pulse">
         <div className="flex flex-col px-5 sm:px-10">
           <h1 className="w-[40%] mb-4 h-12 bg-slate-600 rounded-sm"></h1>

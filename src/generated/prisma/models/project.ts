@@ -42,7 +42,7 @@ export type ProjectMinAggregateOutputType = {
   slug: string | null
   url: string | null
   excerpt: string | null
-  category: string | null
+  category: $Enums.CategoriesNames | null
 }
 
 export type ProjectMaxAggregateOutputType = {
@@ -53,7 +53,7 @@ export type ProjectMaxAggregateOutputType = {
   slug: string | null
   url: string | null
   excerpt: string | null
-  category: string | null
+  category: $Enums.CategoriesNames | null
 }
 
 export type ProjectCountAggregateOutputType = {
@@ -208,7 +208,7 @@ export type ProjectGroupByOutputType = {
   slug: string
   url: string | null
   excerpt: string | null
-  category: string | null
+  category: $Enums.CategoriesNames
   _count: ProjectCountAggregateOutputType | null
   _avg: ProjectAvgAggregateOutputType | null
   _sum: ProjectSumAggregateOutputType | null
@@ -243,7 +243,7 @@ export type projectWhereInput = {
   slug?: Prisma.StringFilter<"project"> | string
   url?: Prisma.StringNullableFilter<"project"> | string | null
   excerpt?: Prisma.StringNullableFilter<"project"> | string | null
-  category?: Prisma.StringNullableFilter<"project"> | string | null
+  category?: Prisma.EnumCategoriesNamesFilter<"project"> | $Enums.CategoriesNames
 }
 
 export type projectOrderByWithRelationInput = {
@@ -255,7 +255,7 @@ export type projectOrderByWithRelationInput = {
   slug?: Prisma.SortOrder
   url?: Prisma.SortOrderInput | Prisma.SortOrder
   excerpt?: Prisma.SortOrderInput | Prisma.SortOrder
-  category?: Prisma.SortOrderInput | Prisma.SortOrder
+  category?: Prisma.SortOrder
 }
 
 export type projectWhereUniqueInput = Prisma.AtLeast<{
@@ -270,7 +270,7 @@ export type projectWhereUniqueInput = Prisma.AtLeast<{
   image?: Prisma.JsonNullableFilter<"project">
   featured?: Prisma.BoolFilter<"project"> | boolean
   excerpt?: Prisma.StringNullableFilter<"project"> | string | null
-  category?: Prisma.StringNullableFilter<"project"> | string | null
+  category?: Prisma.EnumCategoriesNamesFilter<"project"> | $Enums.CategoriesNames
 }, "id" | "slug" | "url">
 
 export type projectOrderByWithAggregationInput = {
@@ -282,7 +282,7 @@ export type projectOrderByWithAggregationInput = {
   slug?: Prisma.SortOrder
   url?: Prisma.SortOrderInput | Prisma.SortOrder
   excerpt?: Prisma.SortOrderInput | Prisma.SortOrder
-  category?: Prisma.SortOrderInput | Prisma.SortOrder
+  category?: Prisma.SortOrder
   _count?: Prisma.projectCountOrderByAggregateInput
   _avg?: Prisma.projectAvgOrderByAggregateInput
   _max?: Prisma.projectMaxOrderByAggregateInput
@@ -302,7 +302,7 @@ export type projectScalarWhereWithAggregatesInput = {
   slug?: Prisma.StringWithAggregatesFilter<"project"> | string
   url?: Prisma.StringNullableWithAggregatesFilter<"project"> | string | null
   excerpt?: Prisma.StringNullableWithAggregatesFilter<"project"> | string | null
-  category?: Prisma.StringNullableWithAggregatesFilter<"project"> | string | null
+  category?: Prisma.EnumCategoriesNamesWithAggregatesFilter<"project"> | $Enums.CategoriesNames
 }
 
 export type projectCreateInput = {
@@ -313,7 +313,7 @@ export type projectCreateInput = {
   slug: string
   url?: string | null
   excerpt?: string | null
-  category?: string | null
+  category: $Enums.CategoriesNames
 }
 
 export type projectUncheckedCreateInput = {
@@ -325,7 +325,7 @@ export type projectUncheckedCreateInput = {
   slug: string
   url?: string | null
   excerpt?: string | null
-  category?: string | null
+  category: $Enums.CategoriesNames
 }
 
 export type projectUpdateInput = {
@@ -336,7 +336,7 @@ export type projectUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.EnumCategoriesNamesFieldUpdateOperationsInput | $Enums.CategoriesNames
 }
 
 export type projectUncheckedUpdateInput = {
@@ -348,7 +348,7 @@ export type projectUncheckedUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.EnumCategoriesNamesFieldUpdateOperationsInput | $Enums.CategoriesNames
 }
 
 export type projectCreateManyInput = {
@@ -360,7 +360,7 @@ export type projectCreateManyInput = {
   slug: string
   url?: string | null
   excerpt?: string | null
-  category?: string | null
+  category: $Enums.CategoriesNames
 }
 
 export type projectUpdateManyMutationInput = {
@@ -371,7 +371,7 @@ export type projectUpdateManyMutationInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.EnumCategoriesNamesFieldUpdateOperationsInput | $Enums.CategoriesNames
 }
 
 export type projectUncheckedUpdateManyInput = {
@@ -383,7 +383,7 @@ export type projectUncheckedUpdateManyInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.EnumCategoriesNamesFieldUpdateOperationsInput | $Enums.CategoriesNames
 }
 
 export type projectCountOrderByAggregateInput = {
@@ -430,6 +430,10 @@ export type projectSumOrderByAggregateInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type EnumCategoriesNamesFieldUpdateOperationsInput = {
+  set?: $Enums.CategoriesNames
 }
 
 
@@ -496,7 +500,7 @@ export type $projectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     slug: string
     url: string | null
     excerpt: string | null
-    category: string | null
+    category: $Enums.CategoriesNames
   }, ExtArgs["result"]["project"]>
   composites: {}
 }
@@ -928,7 +932,7 @@ export interface projectFieldRefs {
   readonly slug: Prisma.FieldRef<"project", 'String'>
   readonly url: Prisma.FieldRef<"project", 'String'>
   readonly excerpt: Prisma.FieldRef<"project", 'String'>
-  readonly category: Prisma.FieldRef<"project", 'String'>
+  readonly category: Prisma.FieldRef<"project", 'CategoriesNames'>
 }
     
 
