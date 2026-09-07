@@ -97,7 +97,7 @@ const Resume = () => {
       >
         print resume
       </button>
-      <main className="box-border w-[210mm] bg-slate-50 p-[10mm] sm:p-[12mm] text-sm shadow-md sm:rounded-lg print:m-0 print:w-[210mm] print:overflow-hidden print:rounded-none print:p-[12mm] print:shadow-none">
+      <main className="box-border max-w-[210mm] bg-slate-50 p-[10mm] sm:p-[12mm] text-sm shadow-md sm:rounded-lg print:m-0 print:w-[210mm] print:overflow-hidden print:rounded-none print:p-[12mm] print:shadow-none">
         <div className="mb-5">
           <div className="border-b-md mx-auto mb-2 w-fit py-[1mm] text-center">
             <h1 className="text-3xl/tight font-bold capitalize min-[500px]:text-4xl/tight sm:text-5xl/tight print:text-5xl/tight">
