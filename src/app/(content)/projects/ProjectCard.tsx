@@ -3,9 +3,18 @@ import Link from "next/link";
 // react-icons
 import { FaStar } from "react-icons/fa";
 
-const ProjectCard = ({ project }: { project: any }) => {
+const ProjectCard = ({
+  loading,
+  project,
+}: {
+  loading: boolean;
+  project: any;
+}) => {
   return (
-    <Link href={`/projects/${project.slug}`}>
+    <Link
+      href={`/projects/${project.slug}`}
+      onClick={(e) => loading && e.preventDefault()}
+    >
       <div className="relative cursor-pointer rounded-2xl text-blue-400 shadow-md transition-transform duration-300 hover:scale-98 animation-fade-in">
         <span className="cursor-pointe absolute top-3 left-3 text-2xl text-yellow-300 text-shadow-2xs">
           {project.featured && <FaStar />}

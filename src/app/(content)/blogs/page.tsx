@@ -18,6 +18,7 @@ import BlogsSkeleton from "./skeleton";
 
 const BlogsPage = () => {
   const initialMount = useRef(true);
+  const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState<BlogType[] | null>(null);
   const [curPage, setCurPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -53,6 +54,7 @@ const BlogsPage = () => {
   }, [searchQuery]);
 
   useEffect(() => {
+    setLoading(true);
     if (initialMount.current) {
       initialMount.current = false;
       return;
@@ -69,6 +71,8 @@ const BlogsPage = () => {
         setTotalPages(totalPages);
       } catch (err) {
         if (err instanceof Error) throw new Error(err.message);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -94,11 +98,13 @@ const BlogsPage = () => {
         </div>
 
         {blogs ? (
-          <div className="flex flex-col">
+          <div className={`transition-opacity duration-200 flex flex-col`}>
             {blogs.length > 0 ? (
-              <div className="flex flex-col gap-y-5">
+              <div
+                className={`${loading ? "opacity-50" : "opacity-100"} flex flex-col gap-y-5`}
+              >
                 {blogs.map((blog) => (
-                  <BlogCard key={blog.id} blog={blog} />
+                  <BlogCard loading={loading} key={blog.id} blog={blog} />
                 ))}
               </div>
             ) : (

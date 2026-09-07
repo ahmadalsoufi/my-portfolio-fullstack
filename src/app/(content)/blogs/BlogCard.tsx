@@ -2,10 +2,13 @@ import Link from "next/link";
 
 import { BlogType } from "../../types";
 
-const BlogCard = ({ blog }: { blog: BlogType }) => {
+const BlogCard = ({ loading, blog }: { loading: boolean; blog: BlogType }) => {
   return (
     <>
-      <Link href={`/blogs/${blog.slug}`}>
+      <Link
+        href={`/blogs/${blog.slug}`}
+        onClick={(e) => loading && e.preventDefault()}
+      >
         <div className="cursor-pointer rounded-2xl bg-slate-700 p-10 text-sm text-blue-400 shadow-md transition-transform duration-300 hover:scale-98 dark:bg-slate-800 animation-fade-in">
           <div>
             <h1 className="truncate capitalize">{blog.title}</h1>
@@ -14,7 +17,7 @@ const BlogCard = ({ blog }: { blog: BlogType }) => {
             <p className="text-sm font-medium text-slate-400">
               This event took place in{" "}
               <span className="text-slate-300">
-                {new Date(blog.event_date).toDateString()}{" "}
+                {new Date(blog.event_date).toDateString()}
               </span>
               (approximate)
             </p>

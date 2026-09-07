@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { getProjects, getCategories, countProjects } from "./ProjectsProvider";
 
@@ -8,12 +8,16 @@ import ProjectCard from "./ProjectCard";
 
 // types
 import { ProjectType } from "../../types";
+
+// components
 import CategoryFilter from "../../components/CategoryFilter";
 import SearchFilter from "../../components/SearchFilter";
 import Pagination from "../../components/Pagination";
 import ProjectsSkeleton from "./skeleton";
 
 export default function ProjectsPage() {
+  const initialMount = useRef(true);
+  const [loading, setLoading] = useState(true);
   const [projects, setProjects] = useState<ProjectType[] | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [curPage, setCurPage] = useState(1);
@@ -73,7 +77,14 @@ export default function ProjectsPage() {
   }, [searchQuery]);
 
   useEffect(() => {
+    if (initialMount.current) {
+      initialMount.current = false;
+      return;
+    }
+
     async function load() {
+      setLoading(true);
+
       try {
         const projects: ProjectType[] | null = await getProjects(
           curPage,
@@ -90,6 +101,8 @@ export default function ProjectsPage() {
         setProjects(projects);
       } catch (err) {
         if (err instanceof Error) throw new Error(err.message);
+      } finally {
+        setLoading(false);
       }
     }
     load();
@@ -112,11 +125,17 @@ export default function ProjectsPage() {
         </div>
 
         {projects ? (
-          <div className="flex flex-col">
+          <div className={`flex flex-col`}>
             {projects.length > 0 ? (
-              <div className="my-4 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] sm:grid-cols-2 gap-3">
+              <div
+                className={`${loading ? "opacity-50" : "opacity-100"} transition-opacity duration-200 my-4 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] sm:grid-cols-2 gap-3`}
+              >
                 {projects.map((project) => (
-                  <ProjectCard key={project.slug} project={project} />
+                  <ProjectCard
+                    loading={loading}
+                    key={project.slug}
+                    project={project}
+                  />
                 ))}
               </div>
             ) : (
