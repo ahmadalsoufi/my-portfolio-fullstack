@@ -10,7 +10,7 @@ const ProjectSkeleton = () => {
           <p className="mb-2 w-[60%] h-3 bg-slate-600 rounded-sm"></p>
         </div>
 
-        <div className="h-48 w-full border-y-2 border-y-slate-700 bg-contain object-cover shadow-md bg-slate-300 rounded-sm"></div>
+        <div className="h-48 w-full border-y-2 border-y-slate-700 bg-contain object-cover bg-slate-300 rounded-sm"></div>
 
         <div className="px-5 sm:px-10">
           <h2 className="mb-4 w-[30%] h-6 bg-slate-600 animate-pulse"></h2>

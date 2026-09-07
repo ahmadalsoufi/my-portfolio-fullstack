@@ -1,10 +1,12 @@
+"use client";
+
 import Link from "next/link";
 
 // react-icons
 import { FaStar } from "react-icons/fa";
 
 const ProjectCard = ({
-  loading,
+  loading = false,
   project,
 }: {
   loading: boolean;

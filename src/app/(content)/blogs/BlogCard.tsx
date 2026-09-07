@@ -1,13 +1,22 @@
+"use client";
+
 import Link from "next/link";
 
 import { BlogType } from "../../types";
 
-const BlogCard = ({ loading, blog }: { loading: boolean; blog: BlogType }) => {
+const BlogCard = ({
+  loading = false,
+  blog,
+}: {
+  loading: boolean;
+  blog: BlogType;
+}) => {
   return (
     <>
       <Link
         href={`/blogs/${blog.slug}`}
         onClick={(e) => loading && e.preventDefault()}
+        scroll={true}
       >
         <div className="cursor-pointer rounded-2xl bg-slate-700 p-10 text-sm text-blue-400 shadow-md transition-transform duration-300 hover:scale-98 dark:bg-slate-800 animation-fade-in">
           <div>
