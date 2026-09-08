@@ -8,8 +8,10 @@ import { GiStarsStack } from "react-icons/gi";
 import { IoDocumentText } from "react-icons/io5";
 import { LatestPosts } from "./LatestPosts";
 import { FeaturedProjects } from "./FeaturedProjects";
+
 import { Suspense } from "react";
-import { getFeaturedProjects } from "../(content)/projects/ProjectsProvider";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorUI from "./ErrorUI";
 
 export default async function HomePage() {
   return (
@@ -23,9 +25,11 @@ export default async function HomePage() {
           <h1 className="mt-4 mb-5 flex items-center gap-x-2 text-start font-bold capitalize">
             <GiStarsStack /> Featured projects
           </h1>
-          <Suspense fallback={<ProjectsSkeleton count={1} />}>
-            <FeaturedProjects />
-          </Suspense>
+          <ErrorBoundary fallback={<ErrorUI />}>
+            <Suspense fallback={<ProjectsSkeleton count={1} />}>
+              <FeaturedProjects />
+            </Suspense>
+          </ErrorBoundary>
 
           <div>
             <AboutPreview detailed={false} />
@@ -34,9 +38,12 @@ export default async function HomePage() {
           <h1 className="mb-5 flex items-center gap-x-2 text-start font-bold capitalize">
             <IoDocumentText /> Latest posts
           </h1>
-          <Suspense fallback={<BlogsSkeleton count={2} onHome={true} />}>
-            <LatestPosts />
-          </Suspense>
+
+          <ErrorBoundary fallback={<ErrorUI />}>
+            <Suspense fallback={<BlogsSkeleton count={2} onHome={true} />}>
+              <LatestPosts />
+            </Suspense>
+          </ErrorBoundary>
         </section>
       </div>
     </>

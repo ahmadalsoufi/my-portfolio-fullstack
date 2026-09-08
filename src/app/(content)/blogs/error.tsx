@@ -5,7 +5,7 @@ const ErrorBoundary = ({ error, retry }: { error: Error; retry(): void }) => {
     <>
       <main className="flex h-screen flex-col items-center justify-center">
         <h2 className="mb-3 text-3xl font-bold capitalize dark:text-slate-50">
-          An error occured!
+          Failed to load blogs!
         </h2>
         <p className="mb-3 max-w-200 text-center text-xl text-slate-500 dark:text-slate-400">
           {error.name}

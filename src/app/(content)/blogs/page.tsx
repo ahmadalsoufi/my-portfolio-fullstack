@@ -18,6 +18,7 @@ import BlogsSkeleton from "./skeleton";
 
 const BlogsPage = () => {
   const initialMount = useRef(true);
+  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState<BlogType[] | null>(null);
   const [curPage, setCurPage] = useState(1);
@@ -32,17 +33,23 @@ const BlogsPage = () => {
   }, [searchQuery]);
 
   useEffect(() => {
+    if (initialMount.current) setLoading(false);
+
     async function load() {
       try {
-        const [blogs, totalPages] = await Promise.all([
+        let [blogs, totalPages] = await Promise.all([
           getBlogs(curPage, blogsPerPage, order, searchQuery),
-          countBlogs(searchQuery).then((res) => Math.ceil(res / blogsPerPage)),
+          countBlogs(searchQuery),
         ]);
+
+        if (blogs === null || totalPages == null) throw new Error();
+
+        totalPages = Math.ceil(totalPages / blogsPerPage);
 
         setBlogs(blogs);
         setTotalPages(totalPages);
       } catch (err) {
-        if (err instanceof Error) throw new Error(err.message);
+        if (err instanceof Error) setError(new Error("failed to load blogs"));
       }
     }
 
@@ -53,24 +60,31 @@ const BlogsPage = () => {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
+  if (error) throw error;
+
   useEffect(() => {
-    setLoading(true);
     if (initialMount.current) {
       initialMount.current = false;
       return;
     }
 
+    setLoading(true);
+
     async function load() {
       try {
-        const [blogs, totalPages] = await Promise.all([
+        let [blogs, totalPages] = await Promise.all([
           getBlogs(curPage, blogsPerPage, order, searchQuery),
-          countBlogs(searchQuery).then((res) => Math.ceil(res / blogsPerPage)),
+          countBlogs(searchQuery),
         ]);
+
+        if (blogs === null || totalPages === null) throw new Error();
+
+        totalPages = Math.ceil(totalPages / blogsPerPage);
 
         setBlogs(blogs);
         setTotalPages(totalPages);
       } catch (err) {
-        if (err instanceof Error) throw new Error(err.message);
+        if (err instanceof Error) setError(new Error("failed to load blogs"));
       } finally {
         setLoading(false);
       }
@@ -79,50 +93,54 @@ const BlogsPage = () => {
     load();
   }, [curPage, order]);
 
+  if (error) throw error;
+
   return (
     <>
-      <div className="w-full p-5">
-        <h1 className="my-5 text-3xl font-medium dark:text-slate-50">
-          My Blogs
-        </h1>
+      <section>
+        <div className="w-full p-5">
+          <h1 className="my-5 text-3xl font-medium dark:text-slate-50">
+            My Blogs
+          </h1>
 
-        <div className="mb-5 flex flex-col items-center gap-x-4 gap-y-4 sm:items-end">
-          <SearchFilter
-            search={searchQuery}
-            setSearch={(query) => {
-              setSearchQuery(query);
-              setCurPage(1);
-            }}
-          />
-          <OrderFilter order={order} setOrder={setOrder} options={options} />
-        </div>
-
-        {blogs ? (
-          <div className={`transition-opacity duration-200 flex flex-col`}>
-            {blogs.length > 0 ? (
-              <div
-                className={`${loading ? "opacity-50" : "opacity-100"} flex flex-col gap-y-5`}
-              >
-                {blogs.map((blog) => (
-                  <BlogCard loading={loading} key={blog.id} blog={blog} />
-                ))}
-              </div>
-            ) : (
-              <p className="text-center text-slate-700 dark:text-slate-50">
-                No results found.
-              </p>
-            )}
-
-            <Pagination
-              totalPages={totalPages}
-              curPage={curPage}
-              setCurPage={setCurPage}
+          <div className="mb-5 flex flex-col items-center gap-x-4 gap-y-4 sm:items-end">
+            <SearchFilter
+              search={searchQuery}
+              setSearch={(query) => {
+                setSearchQuery(query);
+                setCurPage(1);
+              }}
             />
+            <OrderFilter order={order} setOrder={setOrder} options={options} />
           </div>
-        ) : (
-          <BlogsSkeleton count={blogsPerPage} onHome={false} />
-        )}
-      </div>
+
+          {blogs ? (
+            <div className={`transition-opacity duration-200 flex flex-col`}>
+              {blogs.length > 0 ? (
+                <div
+                  className={`${loading ? "opacity-50" : "opacity-100"} flex flex-col gap-y-5`}
+                >
+                  {blogs.map((blog) => (
+                    <BlogCard loading={loading} key={blog.id} blog={blog} />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-center text-slate-700 dark:text-slate-50">
+                  No results found.
+                </p>
+              )}
+
+              <Pagination
+                totalPages={totalPages}
+                curPage={curPage}
+                setCurPage={setCurPage}
+              />
+            </div>
+          ) : (
+            <BlogsSkeleton count={blogsPerPage} onHome={false} />
+          )}
+        </div>
+      </section>
     </>
   );
 };

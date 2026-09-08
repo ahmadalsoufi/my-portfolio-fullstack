@@ -17,6 +17,7 @@ import ProjectsSkeleton from "./skeleton";
 
 export default function ProjectsPage() {
   const initialMount = useRef(true);
+  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
   const [projects, setProjects] = useState<ProjectType[] | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -34,6 +35,9 @@ export default function ProjectsPage() {
     async function load() {
       try {
         let categories = await getCategories();
+
+        if (categories === null) throw new Error();
+
         const allCategories = [
           "All",
           ...categories.map((category) => category.category),
@@ -41,7 +45,8 @@ export default function ProjectsPage() {
 
         setCategories(allCategories);
       } catch (err) {
-        if (err instanceof Error) throw new Error(err.message);
+        if (err instanceof Error)
+          setError(new Error("failed to load projects"));
       }
     }
 
@@ -49,6 +54,8 @@ export default function ProjectsPage() {
   }, []);
 
   useEffect(() => {
+    if (initialMount.current) setLoading(false);
+
     async function load() {
       try {
         const projects: ProjectType[] | null = await getProjects(
@@ -58,14 +65,17 @@ export default function ProjectsPage() {
           curCategory,
         );
 
-        const totalPages = Math.ceil(
-          (await countProjects(searchQuery, curCategory)) / projectsPerPage,
-        );
+        let totalPages = await countProjects(searchQuery, curCategory);
+
+        if (totalPages === null) throw new Error();
+
+        totalPages = Math.ceil(totalPages / projectsPerPage);
 
         setTotalPages(totalPages);
         setProjects(projects);
       } catch (err) {
-        if (err instanceof Error) throw new Error(err.message);
+        if (err instanceof Error)
+          setError(new Error("failed to load projects"));
       }
     }
 
@@ -81,10 +91,9 @@ export default function ProjectsPage() {
       initialMount.current = false;
       return;
     }
+    setLoading(true);
 
     async function load() {
-      setLoading(true);
-
       try {
         const projects: ProjectType[] | null = await getProjects(
           curPage,
@@ -93,14 +102,17 @@ export default function ProjectsPage() {
           curCategory,
         );
 
-        const totalPages = Math.ceil(
-          (await countProjects(searchQuery, curCategory)) / projectsPerPage,
-        );
+        let totalPages = await countProjects(searchQuery, curCategory);
+
+        if (totalPages === null) throw new Error();
+
+        totalPages = Math.ceil(totalPages / projectsPerPage);
 
         setTotalPages(totalPages);
         setProjects(projects);
       } catch (err) {
-        if (err instanceof Error) throw new Error(err.message);
+        if (err instanceof Error)
+          setError(new Error("failed to load projects"));
       } finally {
         setLoading(false);
       }
@@ -108,6 +120,7 @@ export default function ProjectsPage() {
     load();
   }, [curPage, curCategory]);
 
+  if (error) throw error;
   return (
     <>
       <section className="w-full p-5">

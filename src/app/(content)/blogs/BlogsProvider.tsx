@@ -5,8 +5,12 @@ import { BlogType } from "../../types";
 
 // used for getting a single blog's info by slug
 export async function getBlog(slug: string) {
-  const blog = await prisma.blog.findUnique({ where: { slug: slug } });
-  return blog as BlogType | null;
+  try {
+    const blog = await prisma.blog.findUnique({ where: { slug: slug } });
+    return blog as BlogType;
+  } catch (err) {
+    return null;
+  }
 }
 // applies pagination, filter by order, and filter by search
 export async function getBlogs(
@@ -15,42 +19,56 @@ export async function getBlogs(
   order: string,
   searchQuery: string,
 ) {
-  const blogs = await prisma.blog.findMany({
-    where: {
-      OR: [
-        { title: { contains: searchQuery.trim(), mode: "insensitive" } },
-        { excerpt: { contains: searchQuery.trim(), mode: "insensitive" } },
-      ],
-    },
-    orderBy: {
-      event_date: order.toLowerCase() === "newest" ? "desc" : "asc",
-    },
-    skip: (page - 1) * limit,
-    take: limit,
-  });
+  try {
+    const blogs = await prisma.blog.findMany({
+      where: {
+        OR: [
+          { title: { contains: searchQuery.trim(), mode: "insensitive" } },
+          { excerpt: { contains: searchQuery.trim(), mode: "insensitive" } },
+        ],
+      },
+      orderBy: {
+        event_date: order.toLowerCase() === "newest" ? "desc" : "asc",
+      },
+      skip: (page - 1) * limit,
+      take: limit,
+    });
 
-  return blogs as BlogType[] | null;
+    return blogs as BlogType[];
+  } catch (err) {
+    return null;
+  }
 }
 // countsBlogs to then count pages(totalPages) -> used for paginatioon
 export async function countBlogs(searchQuery: string) {
-  return await prisma.blog.count({
-    where: {
-      OR: [
-        { title: { contains: searchQuery, mode: "insensitive" } },
-        { excerpt: { contains: searchQuery, mode: "insensitive" } },
-      ],
-    },
-  });
+  try {
+    const count = await prisma.blog.count({
+      where: {
+        OR: [
+          { title: { contains: searchQuery, mode: "insensitive" } },
+          { excerpt: { contains: searchQuery, mode: "insensitive" } },
+        ],
+      },
+    });
+
+    return count;
+  } catch (err) {
+    return null;
+  }
 }
 
-// to be fetdched in HomePage
+// homePage
 export async function getLatestBlogs() {
-  const blogs = await prisma.blog.findMany({
-    orderBy: {
-      event_date: "desc",
-    },
-    take: 2,
-  });
+  try {
+    const blogs = await prisma.blog.findMany({
+      orderBy: {
+        event_date: "desc",
+      },
+      take: 2,
+    });
 
-  return blogs as BlogType[] | null;
+    return blogs as BlogType[];
+  } catch (err) {
+    return null;
+  }
 }

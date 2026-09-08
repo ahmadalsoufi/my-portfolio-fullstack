@@ -1,4 +1,3 @@
-import { FaLongArrowAltLeft } from "react-icons/fa";
 import GoBackBtn from "./components/GoBackBtn";
 
 const NotFoundPage = () => {
