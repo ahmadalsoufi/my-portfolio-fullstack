@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Ahmad Alsoufi | portfolio",
@@ -19,7 +20,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       {/* it's flex in order to be able to margin-top the footer to keep it down */}
       <body className="min-h-screen flex flex-col">
         <header className="border-b-2 border-b-blue-300 bg-slate-700 text-slate-100 shadow-md dark:bg-slate-900 print:hidden">
-          <Navbar />
+          <Suspense fallback={null}>
+            <Navbar />
+          </Suspense>
         </header>
         <main className="">{children}</main>
         <footer className="print:hidden mt-auto ">

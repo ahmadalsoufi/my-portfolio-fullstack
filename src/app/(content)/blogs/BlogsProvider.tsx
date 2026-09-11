@@ -1,10 +1,15 @@
 "use server";
 
+import { cacheLife } from "next/cache";
+
 import { prisma } from "../../../../lib/prisma";
 import { BlogType } from "../../types";
 
 // used for getting a single blog's info by slug
 export async function getBlog(slug: string) {
+  "use cache";
+  cacheLife("days");
+
   try {
     const blog = await prisma.blog.findUnique({ where: { slug: slug } });
     return blog as BlogType;
@@ -12,6 +17,7 @@ export async function getBlog(slug: string) {
     return null;
   }
 }
+
 // applies pagination, filter by order, and filter by search
 export async function getBlogs(
   page: number,
@@ -19,6 +25,9 @@ export async function getBlogs(
   order: string,
   searchQuery: string,
 ) {
+  "use cache";
+  cacheLife("days");
+
   try {
     const blogs = await prisma.blog.findMany({
       where: {
@@ -41,6 +50,9 @@ export async function getBlogs(
 }
 // countsBlogs to then count pages(totalPages) -> used for paginatioon
 export async function countBlogs(searchQuery: string) {
+  "use cache";
+  cacheLife("days");
+
   try {
     const count = await prisma.blog.count({
       where: {
@@ -59,6 +71,9 @@ export async function countBlogs(searchQuery: string) {
 
 // homePage
 export async function getLatestBlogs() {
+  "use cache";
+  cacheLife("days");
+
   try {
     const blogs = await prisma.blog.findMany({
       orderBy: {

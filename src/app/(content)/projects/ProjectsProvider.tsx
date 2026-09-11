@@ -1,5 +1,7 @@
 "use server";
 
+import { cacheLife, cacheTag } from "next/cache";
+
 import { prisma } from "../../../../lib/prisma";
 import { ProjectType } from "../../types";
 import type { CategoriesNames } from "@/generated/prisma/enums";
@@ -10,6 +12,9 @@ export async function getProjects(
   searchQuery: string,
   curCategory: string,
 ) {
+  "use cache";
+  cacheLife("days");
+
   try {
     const projects = await prisma.project.findMany({
       where: {
@@ -34,6 +39,9 @@ export async function getProjects(
 
 // used to count pagination pages
 export async function countProjects(searchQuery: string, curCategory: string) {
+  "use cache";
+  cacheLife("days");
+
   try {
     return await prisma.project.count({
       where: {
@@ -51,6 +59,9 @@ export async function countProjects(searchQuery: string, curCategory: string) {
 }
 
 export async function getCategories() {
+  "use cache";
+  cacheLife("days");
+
   try {
     return await prisma.project.findMany({
       select: {
@@ -63,6 +74,9 @@ export async function getCategories() {
 }
 
 export async function getProject(slug: string): Promise<ProjectType | null> {
+  "use cache";
+  cacheLife("days");
+
   try {
     return (await prisma.project.findUnique({
       where: { slug: slug },
@@ -74,6 +88,9 @@ export async function getProject(slug: string): Promise<ProjectType | null> {
 
 // homepage
 export async function getFeaturedProjects() {
+  "use cache";
+  cacheLife("days");
+
   try {
     const featuredProjects = await prisma.project.findMany({
       where: {

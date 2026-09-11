@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
         </div>
         <p className="bg-slate-800 p-5 text-center text-sm font-medium text-slate-300">
-          &copy; {new Date().getFullYear()} by{" "}
+          &copy; 2026 by{" "}
           <span>
             <a
               href={myInfo[0].href}
