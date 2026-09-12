@@ -14,7 +14,7 @@ export type ProjectType = {
       small: { url: string };
       thumbnail: { url: string };
     };
-  };
+  } | null;
   category: string;
 };
 
@@ -34,4 +34,11 @@ export type BlogType = {
       thumbnail: { url: string };
     };
   } | null;
+};
+
+import { CategoriesNames } from "@/generated/prisma/enums";
+
+// category
+export type CategoryType = {
+  category: CategoriesNames;
 };

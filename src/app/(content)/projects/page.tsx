@@ -1,171 +1,51 @@
-"use client";
-import { useEffect, useState, useRef } from "react";
+import { Suspense } from "react";
 
-import { getProjects, getCategories, countProjects } from "./ProjectsProvider";
+// Types
+import { CategoriesNames } from "@/generated/prisma/enums";
 
-// components
-import ProjectCard from "./ProjectCard";
-
-// types
-import { ProjectType } from "../../types";
-
-// components
-import CategoryFilter from "../../components/CategoryFilter";
-import SearchFilter from "../../components/SearchFilter";
-import Pagination from "../../components/Pagination";
+// Components
+import RenderProjects from "./RenderProjects";
+import CategoryFilter from "@/app/components/CategoryFilter";
+import SearchFilter from "@/app/components/SearchFilter";
 import ProjectsSkeleton from "./skeleton";
 
-export default function ProjectsPage() {
-  const initialMount = useRef(true);
-  const [error, setError] = useState<Error | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [projects, setProjects] = useState<ProjectType[] | null>(null);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [curPage, setCurPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [curCategory, setCurCategory] = useState<string>("All");
-  const [categories, setCategories] = useState<string[]>([]);
-  const projectsPerPage = 4;
+// Constants
+import { BLOGS_PER_PAGE } from "@/app/constants";
+import { getCategories } from "./projects";
 
-  useEffect(() => {
-    setProjects(null);
-  }, [searchQuery]);
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    search?: string | null;
+    category?: CategoriesNames | null;
+    page?: string | null;
+  }>;
+}) {
+  const categories = await getCategories();
 
-  useEffect(() => {
-    async function load() {
-      try {
-        let categories = await getCategories();
-
-        if (categories === null) throw new Error();
-
-        const allCategories = [
-          "All",
-          ...categories.map((category) => category.category),
-        ];
-
-        setCategories(allCategories);
-      } catch (err) {
-        if (err instanceof Error)
-          setError(new Error("failed to load projects"));
-      }
-    }
-
-    load();
-  }, []);
-
-  useEffect(() => {
-    if (initialMount.current) setLoading(false);
-
-    async function load() {
-      try {
-        const projects: ProjectType[] | null = await getProjects(
-          curPage,
-          projectsPerPage,
-          searchQuery,
-          curCategory,
-        );
-
-        let totalPages = await countProjects(searchQuery, curCategory);
-
-        if (totalPages === null) throw new Error();
-
-        totalPages = Math.ceil(totalPages / projectsPerPage);
-
-        setTotalPages(totalPages);
-        setProjects(projects);
-      } catch (err) {
-        if (err instanceof Error)
-          setError(new Error("failed to load projects"));
-      }
-    }
-
-    const timer = setTimeout(() => {
-      load();
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [searchQuery]);
-
-  useEffect(() => {
-    if (initialMount.current) {
-      initialMount.current = false;
-      return;
-    }
-    setLoading(true);
-
-    async function load() {
-      try {
-        const projects: ProjectType[] | null = await getProjects(
-          curPage,
-          projectsPerPage,
-          searchQuery,
-          curCategory,
-        );
-
-        let totalPages = await countProjects(searchQuery, curCategory);
-
-        if (totalPages === null) throw new Error();
-
-        totalPages = Math.ceil(totalPages / projectsPerPage);
-
-        setTotalPages(totalPages);
-        setProjects(projects);
-      } catch (err) {
-        if (err instanceof Error)
-          setError(new Error("failed to load projects"));
-      } finally {
-        setLoading(false);
-      }
-    }
-    load();
-  }, [curPage, curCategory]);
-
-  if (error) throw error;
   return (
     <>
       <section className="w-full p-5">
         <h1 className="my-5 text-3xl font-medium dark:text-slate-50">
           My Projects
         </h1>
-        <div className="mb-5 flex flex-col items-center gap-x-4 gap-y-4 sm:flex-row">
-          <SearchFilter search={searchQuery} setSearch={setSearchQuery} />
 
-          <CategoryFilter
-            curCategory={curCategory}
-            setCurCategory={setCurCategory}
-            categories={categories}
-          />
+        <div className="mb-5 flex flex-col items-center gap-x-4 gap-y-4 sm:flex-row">
+          <Suspense fallback={null}>
+            <SearchFilter />
+          </Suspense>
+
+          <Suspense fallback={null}>
+            <CategoryFilter categories={categories} />
+          </Suspense>
         </div>
 
-        {projects ? (
-          <div className={`flex flex-col`}>
-            {projects.length > 0 ? (
-              <div
-                className={`${loading ? "opacity-50" : "opacity-100"} transition-opacity duration-200 my-4 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] sm:grid-cols-2 gap-3`}
-              >
-                {projects.map((project) => (
-                  <ProjectCard
-                    loading={loading}
-                    key={project.slug}
-                    project={project}
-                  />
-                ))}
-              </div>
-            ) : (
-              <p className="text-center text-slate-700 dark:text-slate-50">
-                No results found.
-              </p>
-            )}
-
-            <Pagination
-              totalPages={totalPages}
-              curPage={curPage}
-              setCurPage={setCurPage}
-            />
-          </div>
-        ) : (
-          <ProjectsSkeleton count={4} />
-        )}
+        <div className={`flex flex-col`}>
+          <Suspense fallback={<ProjectsSkeleton count={BLOGS_PER_PAGE} />}>
+            <RenderProjects searchParams={searchParams} />
+          </Suspense>
+        </div>
       </section>
     </>
   );

@@ -13,7 +13,7 @@ const BlogSkeleton = () => {
       <p className="w-[30%] mb-20 h-3 bg-slate-400 dark:bg-slate-600 max-w-140 rounded-sm"></p>
 
       <div className="flex w-full items-center justify-between mt-auto">
-        <p className="mb-2 w-[20%] h-3 bg-slate-600 dark:bg-slate-300 rounded-sm"></p>
+        <p className="mb-2 w-[20%] h-3 bg-slate-600 dark:bg-slate-600 rounded-sm"></p>
 
         <div className="shrink-0">
           <GoBackBtn href="/blogs" />

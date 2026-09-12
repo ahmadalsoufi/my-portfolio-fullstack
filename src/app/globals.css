@@ -59,7 +59,7 @@ body {
 }
 
 @utility animation-fade-in {
-  animation: fadeIn 500ms ease-out forwards;
+  animation: fadeIn 300ms ease-out forwards;
 }
 
 @keyframes wave {

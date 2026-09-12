@@ -25,6 +25,7 @@ export default async function HomePage() {
           <h1 className="mt-4 mb-5 flex items-center gap-x-2 text-start font-bold capitalize">
             <GiStarsStack /> Featured projects
           </h1>
+
           <ErrorBoundary fallback={<ErrorUI />}>
             <Suspense fallback={<ProjectsSkeleton count={1} />}>
               <FeaturedProjects />

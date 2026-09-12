@@ -19,11 +19,13 @@ An end-to-end full-stack web app portfolio that utilizes modern technologies and
 
 ## Features applied in the frontend
 
-- Caching & Revalidating
+- Caching and revalidating
+- Router Handler APIs
+- Query parameters
 - Search filter
 - Category filter
 - Pagination
-- Error handling for expected & unexpected errors
+- Error handling for expected and unexpected errors
 - Loading skeletons
 - Responsive design
 - Adaptive theme based on browser settings

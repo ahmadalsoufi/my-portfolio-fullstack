@@ -1,11 +1,11 @@
 import ReactMarkdown from "react-markdown";
 
-import { getBlog } from "../BlogsProvider";
-
 // types
 import GoBackBtn from "@/app/components/GoBackBtn";
 import { Suspense } from "react";
 import BlogSkeleton from "./skeleton";
+import { getBlog } from "../blogs";
+import { notFound } from "next/navigation";
 
 export default async function GetBlogsDetailsPage({
   params,
@@ -26,7 +26,10 @@ export async function BlogsDetailsPage({
 }) {
   const { slug } = await params;
 
-  const blog = await getBlog(slug);
+  const data = await getBlog({ slug });
+  const blog = data.blog;
+
+  if (!blog) notFound();
 
   return (
     <>

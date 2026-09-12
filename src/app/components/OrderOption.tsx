@@ -1,7 +1,7 @@
 const OrderOption = ({ option }: { option: string }) => {
   return (
     <>
-      <option value={option}>{option.split('-').join(' ')}</option>
+      <option value={option}>{option.split("-").join(" ")}</option>
     </>
   );
 };

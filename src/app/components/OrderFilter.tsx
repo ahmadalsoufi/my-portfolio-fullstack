@@ -1,14 +1,14 @@
-import OrderOption from "./OrderOption";
+"use client";
 
-const OrderFilter = ({
-  order,
-  setOrder,
-  options,
-}: {
-  order: string;
-  setOrder: React.Dispatch<React.SetStateAction<string>>;
-  options: string[];
-}) => {
+import OrderOption from "./OrderOption";
+import { useRouter, useSearchParams } from "next/navigation";
+
+const OrderFilter = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const options = ["Newest", "Oldest"];
+
   return (
     <>
       <div className="flex items-center justify-end gap-x-2 max-[400px]:justify-center">
@@ -17,8 +17,14 @@ const OrderFilter = ({
         </p>
         <select
           className="sm:text-md dark:text-slate100 cursor-pointer rounded-md bg-slate-700 px-3 py-1 text-sm font-medium text-slate-50 capitalize shadow-sm transition-colors duration-200 sm:rounded-lg sm:px-5 sm:py-2 dark:bg-slate-800"
-          value={order}
-          onChange={(e) => setOrder(e.target.value)}
+          value={searchParams.get("order") || ""}
+          onChange={(e) => {
+            const params = new URLSearchParams(searchParams.toString());
+
+            params.set("order", e.target.value);
+
+            router.push(`?${params.toString()}`);
+          }}
         >
           {options.map((option) => (
             <OrderOption key={option} option={option} />
