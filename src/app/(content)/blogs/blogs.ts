@@ -11,6 +11,9 @@ export async function getLatestBlogs({ latest }: { latest: boolean }) {
 
   try {
     const blogs = await prisma.blog.findMany({
+      orderBy: {
+        event_date: "desc",
+      },
       take: latest ? 2 : BLOGS_PER_PAGE,
     });
 
