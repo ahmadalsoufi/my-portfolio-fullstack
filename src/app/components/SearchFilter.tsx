@@ -1,5 +1,6 @@
 "use client";
 
+// It's Dynamically rendered, due to using a runtime-data (useSearchParams)
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 

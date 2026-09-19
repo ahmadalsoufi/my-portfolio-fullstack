@@ -7,6 +7,24 @@ import { PROJECTS_PER_PAGE } from "@/app/constants";
 // Types
 import { CategoriesNames } from "@/generated/prisma/enums";
 
+export async function getFeaturedProjects({ featured }: { featured: boolean }) {
+  "use cache";
+  cacheLife("days");
+
+  try {
+    const projects = await prisma.project.findMany({
+      where: {
+        ...(featured === true ? { featured: featured } : {}),
+      },
+    });
+
+    return { projects };
+  } catch (err) {
+    if (err instanceof Error) throw new Error(err.message);
+    throw new Error("Failed to load projects!");
+  }
+}
+
 export async function getProjects({
   featured,
   category,
@@ -18,9 +36,6 @@ export async function getProjects({
   searchQuery?: string | null;
   page?: string | null;
 }) {
-  "use cache";
-  cacheLife("days");
-
   try {
     const projects = await prisma.project.findMany({
       where: {
@@ -43,7 +58,6 @@ export async function getProjects({
 
     const projectsCount = await prisma.project.count({
       where: {
-        ...(featured ? { featured: featured === "true" } : {}),
         ...(category ? { category: category } : {}),
         ...(searchQuery
           ? {
@@ -65,7 +79,7 @@ export async function getProjects({
 
 export async function getProject({ slug }: { slug: string }) {
   "use cache";
-  cacheLife("days");
+  cacheLife("weeks");
 
   try {
     const project = await prisma.project.findUnique({

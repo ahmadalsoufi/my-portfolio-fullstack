@@ -18,7 +18,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className="text-slate-700 dark:bg-slate-700 dark:text-slate-50"
     >
       {/* it's flex in order to be able to margin-top the footer to keep it down */}
-      <body className="min-h-screen flex flex-col">
+      <body className="h-screen flex flex-col">
         <header className="border-b-2 border-b-blue-300 bg-slate-700 text-slate-100 shadow-md dark:bg-slate-900 print:hidden">
           <Suspense fallback={null}>
             <Navbar />

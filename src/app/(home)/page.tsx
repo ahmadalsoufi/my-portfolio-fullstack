@@ -27,9 +27,7 @@ export default async function HomePage() {
           </h1>
 
           <ErrorBoundary fallback={<ErrorUI />}>
-            <Suspense fallback={<ProjectsSkeleton count={1} />}>
-              <FeaturedProjects />
-            </Suspense>
+            <FeaturedProjects />
           </ErrorBoundary>
 
           <div>
@@ -41,9 +39,7 @@ export default async function HomePage() {
           </h1>
 
           <ErrorBoundary fallback={<ErrorUI />}>
-            <Suspense fallback={<BlogsSkeleton count={2} onHome={true} />}>
-              <LatestPosts />
-            </Suspense>
+            <LatestPosts />
           </ErrorBoundary>
         </section>
       </div>

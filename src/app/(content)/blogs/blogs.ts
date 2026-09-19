@@ -5,6 +5,22 @@ import { cacheLife } from "next/cache";
 // Constants
 import { BLOGS_PER_PAGE } from "@/app/constants";
 
+export async function getLatestBlogs({ latest }: { latest: boolean }) {
+  "use cache";
+  cacheLife("days");
+
+  try {
+    const blogs = await prisma.blog.findMany({
+      take: latest ? 2 : BLOGS_PER_PAGE,
+    });
+
+    return { blogs: blogs as BlogType[] };
+  } catch (err) {
+    if (err instanceof Error) throw new Error(err.message);
+    throw new Error("Failed to load blogs!");
+  }
+}
+
 export async function getBlogs({
   latest,
   searchQuery,
@@ -16,9 +32,6 @@ export async function getBlogs({
   page?: string | null;
   order?: string | null;
 }) {
-  "use cache";
-  cacheLife("days");
-
   try {
     const blogs = await prisma.blog.findMany({
       where: {
@@ -64,7 +77,7 @@ export async function getBlogs({
 
 export async function getBlog({ slug }: { slug: string }) {
   "use cache";
-  cacheLife("days");
+  cacheLife("weeks");
 
   try {
     const blog = await prisma.blog.findUnique({

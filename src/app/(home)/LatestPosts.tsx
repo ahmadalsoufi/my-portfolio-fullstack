@@ -1,9 +1,8 @@
 import BlogCard from "../(content)/blogs/BlogCard";
-import { getBlogs } from "../(content)/blogs/blogs";
-import { BlogType } from "../types";
+import { getLatestBlogs } from "../(content)/blogs/blogs";
 
 export async function LatestPosts() {
-  const recentBlogs = await getBlogs({ latest: "true" });
+  const recentBlogs = await getLatestBlogs({ latest: true });
 
   return (
     <>
