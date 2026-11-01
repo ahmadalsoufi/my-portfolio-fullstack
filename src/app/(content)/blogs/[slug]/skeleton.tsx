@@ -3,7 +3,7 @@ import GoBackBtn from "@/app/components/GoBackBtn";
 const BlogSkeleton = () => {
   return (
     <section className="flex flex-col items-center px-5 py-8 sm:m-10 animate-pulse bg-slate-50 dark:bg-slate-800 rounded-lg shadow-md">
-      <h1 className="w-[40%] mb-4 h-12 bg-slate-600 dark:bg-slate-300 rounded-sm"></h1>
+      <h1 className="w-[80%] sm:w-[40%] mb-4 h-10 sm:h-12 bg-slate-600 dark:bg-slate-300 rounded-sm"></h1>
       {Array.from({ length: 14 }, (_, i) => (
         <p
           key={i + 1}

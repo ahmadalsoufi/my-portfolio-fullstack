@@ -15,7 +15,7 @@ const BlogCard = ({ blog }: { blog: BlogType }) => {
               This event took place in{" "}
               <span className="text-slate-300">
                 {new Date(blog.event_date).toDateString()}
-              </span>
+              </span>{" "}
               (approximate)
             </p>
           </div>

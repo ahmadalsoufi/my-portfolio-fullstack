@@ -4,7 +4,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Ahmad Alsoufi | Resume",
-  description: "Ahmad Alsoufi | Web developer.",
+  description:
+    "Ahmad Alsoufi is a Full-Stack Web developer specializing in Next.js, TypeScript, PostgreSQL, and Prisma ORM. Seeking opportunities in Abu Dhabi, UAE",
   authors: {
     name: "Ahmad Alsoufi",
     url: "https://GitHub.com/ahmadalsoufi",
@@ -98,7 +99,7 @@ const Resume = () => {
         print resume
       </button>
       <main className="box-border max-w-[210mm] bg-slate-50 p-[10mm] sm:p-[12mm] text-sm shadow-md sm:rounded-lg print:m-0 print:w-[210mm] print:overflow-hidden print:rounded-none print:p-[12mm] print:shadow-none">
-        <div className="mb-5">
+        <div className="mb-4">
           <div className="border-b-md mx-auto mb-2 w-fit py-[1mm] text-center">
             <h1 className="text-3xl/tight font-bold capitalize min-[500px]:text-4xl/tight sm:text-5xl/tight print:text-5xl/tight">
               Ahmad Alsoufi
@@ -111,7 +112,7 @@ const Resume = () => {
             </h3>
           </div>
 
-          <ul className="mb-5 flex flex-col items-center justify-center space-y-2 gap-x-2 md:flex-row md:space-y-0 print:flex-row print:space-y-0">
+          <ul className="mb-4 flex flex-col items-center justify-center space-y-2 gap-x-2 md:flex-row md:space-y-0 print:flex-row print:space-y-0">
             {myInfo.map((info, index) => (
               <li key={info.label}>
                 <a
@@ -144,7 +145,7 @@ const Resume = () => {
         </div>
 
         {/* skills section */}
-        <div className="mb-5 text-sm">
+        <div className="mb-4 text-sm">
           <h2 className="border-b-sm text-3xl/normal font-medium text-blue-500 capitalize">
             Skills
           </h2>
@@ -170,7 +171,7 @@ const Resume = () => {
         </div>
 
         {/* Projects section */}
-        <div className="mb-5 text-sm">
+        <div className="mb-4 text-sm">
           <h2 className="border-b-sm text-3xl/normal font-medium text-blue-500 capitalize">
             Projects
           </h2>
@@ -221,7 +222,7 @@ const Resume = () => {
         </div>
 
         {/* Education section */}
-        <div className="mb-5 text-sm">
+        <div className="mb-4 text-sm">
           <h2 className="border-b-sm text-3xl/normal font-medium text-blue-500 capitalize">
             Education
           </h2>
