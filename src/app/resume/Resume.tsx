@@ -103,9 +103,12 @@ const Resume = () => {
             <h1 className="text-3xl/tight font-bold capitalize min-[500px]:text-4xl/tight sm:text-5xl/tight print:text-5xl/tight">
               Ahmad Alsoufi
             </h1>
-            <h2 className="text-xl/relaxed font-medium capitalize sm:text-2xl/relaxed print:text-xl/relaxed">
+            <h2 className="text-xl/relaxed font-semibold capitalize sm:text-2xl/relaxed print:text-xl/relaxed">
               Web Developer
             </h2>
+            <h3 className="text-base/relaxed font-medium capitalize sm:text-lg/relaxed print:text-lg/relaxed text-slate-600">
+              Abu Dhabi, United Arab Emirates (UAE)
+            </h3>
           </div>
 
           <ul className="mb-5 flex flex-col items-center justify-center space-y-2 gap-x-2 md:flex-row md:space-y-0 print:flex-row print:space-y-0">
@@ -128,11 +131,15 @@ const Resume = () => {
           </ul>
 
           <p className="text-center text-sm sm:text-start print:text-start">
-            I graduated with an associate degree in Computer Programming. I
-            specialize in web development with a focus on modern technologies
-            such as React and Next.js, I work with Prisma ORM and PostgreSQL for
-            relational database development, and use tools including Git,
-            GitHub, and Vercel to manage and deploy full stack applications.
+            I graduated with an associate degree in{" "}
+            <span className="font-medium">Computer Programming.</span> I
+            specialize in web development with modern technologies primarily{" "}
+            <span className="font-medium">Next.js, and TypeScript,</span>I work
+            with <span className="font-medium">Prisma ORM and PostgreSQL</span>{" "}
+            for relational database development, and use tools including{" "}
+            <span className="font-medium">Git, GitHub, and Vercel</span> to
+            manage and deploy{" "}
+            <span className="font-medium">full stack applications.</span>
           </p>
         </div>
 
