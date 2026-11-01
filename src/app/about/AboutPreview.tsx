@@ -22,8 +22,35 @@ const AboutPreview = ({ detailed = false }: { detailed: boolean }) => {
               </h1>
 
               <p className="text-paragraph mb-5 text-sm sm:text-base dark:text-slate-400">
-                I graduated from a Computer Programming major. I specialize in
-                web development, and I'm expanding my knowledge in the field.
+                I graduated with a{" "}
+                <span className="font-medium text-slate-700 dark:text-slate-300">
+                  Computer Programming (English)
+                </span>{" "}
+                Associate Degree from{" "}
+                <span className="font-medium text-slate-700 dark:text-slate-300">
+                  {" "}
+                  Istanbul Aydin University
+                </span>{" "}
+                during summer of 2026 with{" "}
+                <span className="font-medium text-slate-700 dark:text-slate-300">
+                  3.22 GPA,
+                </span>{" "}
+                I specialize in{" "}
+                <span className="font-medium text-slate-700 dark:text-slate-300">
+                  full stack web development.
+                </span>{" "}
+                I'm eager to contribute to a development team.
+              </p>
+
+              <p className="text-paragraph mb-5 text-sm sm:text-base dark:text-slate-400">
+                I'm available in{" "}
+                <span className="font-medium text-slate-700 dark:text-slate-300">
+                  Abu Dhabi, United Arab Emirates (UAE),
+                </span>{" "}
+                starting{" "}
+                <span className="font-medium text-slate-700 dark:text-slate-300">
+                  November 5 2026.
+                </span>
               </p>
 
               <div className="flex flex-col items-center justify-center gap-x-5 gap-y-2 sm:flex-row sm:justify-start">
@@ -53,15 +80,30 @@ const AboutPreview = ({ detailed = false }: { detailed: boolean }) => {
                   My next step
                 </h2>
                 <p className="text-paragraph mb-10 text-sm sm:text-base dark:text-slate-400">
-                  Over the past two years in university, I've built a solid web
-                  development foundation through hands-on projects. My next step
-                  is joining a team of developers, ship real-world applications,
-                  and learn more from more experienced developers.
+                  Over the past two years in university and the time spent after
+                  graduation, I've built a solid{" "}
+                  <span className="font-medium text-slate-700 dark:text-slate-300">
+                    web development{" "}
+                  </span>{" "}
+                  foundation through{" "}
+                  <span className="font-medium text-slate-700 dark:text-slate-300">
+                    hands-on projects.
+                  </span>{" "}
+                  My next step is joining a team of developers, ship{" "}
+                  <span className="font-medium text-slate-700 dark:text-slate-300">
+                    {" "}
+                    real-world applications,{" "}
+                  </span>
+                  and{" "}
+                  <span className="font-medium text-slate-700 dark:text-slate-300">
+                    learn more{" "}
+                  </span>{" "}
+                  from more experienced developers.
                 </p>
               </div>
 
               <h2 className="mb-2 text-xl/relaxed font-medium sm:text-2xl/relaxed dark:text-slate-100">
-                Tools and technologies I use
+                Tools and Technologies I Use
               </h2>
               <ul className="mb-10 flex flex-wrap justify-center gap-2 sm:justify-start">
                 {[
@@ -83,6 +125,25 @@ const AboutPreview = ({ detailed = false }: { detailed: boolean }) => {
                   <li
                     key={item}
                     className="rounded-lg bg-slate-700 px-3 py-2 text-sm font-medium tracking-wide text-slate-100 shadow-md"
+                  >
+                    {item.toUpperCase()}
+                  </li>
+                ))}
+              </ul>
+
+              <h2 className="mb-2 text-xl/relaxed font-medium sm:text-2xl/relaxed dark:text-slate-100">
+                Currently Learning
+              </h2>
+              <ul className="mb-10 flex flex-wrap justify-center gap-2 sm:justify-start">
+                {[
+                  "Authentication",
+                  "Authorization",
+                  "Role Based Access Control (RBAC)",
+                  "zod validation",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-lg bg-blue-500 px-3 py-2 text-sm font-medium tracking-wide text-slate-100 shadow-md"
                   >
                     {item.toUpperCase()}
                   </li>
