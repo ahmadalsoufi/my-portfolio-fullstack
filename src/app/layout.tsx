@@ -6,8 +6,10 @@ import Footer from "./components/Footer";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Ahmad Alsoufi | portfolio",
-  description: "Welcome to my Next.js application.",
+  title: "Ahmad Alsoufi | Full Stack Web Developer",
+  description:
+    "Ahmad Alsoufi is a full-stack website developer specializing in Next.js, TypeScript, PostgreSQL, and Prisma ORM. Seeking opportunities in Abu Dhabi, United Arab Emirates (UAE)",
+
   icons: { icon: "/profile.jpeg" },
 };
 
