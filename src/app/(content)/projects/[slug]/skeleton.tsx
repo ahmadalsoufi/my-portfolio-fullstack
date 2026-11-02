@@ -21,6 +21,7 @@ const ProjectSkeleton = () => {
           <p className="mb-2 w-full h-3 bg-slate-600 rounded-sm"></p>
           <p className="mb-2 w-full h-3 bg-slate-600 rounded-sm"></p>
           <p className="mb-17 w-[88%] h-3 bg-slate-600 rounded-sm"></p>
+          <p className="w-[100px] h-[30px] bg-slate-500 shadow-sm cursor-not-allowed mb-7 rounded-sm py-1 px-4 text-slate-50"></p>
 
           <div className="flex items-center sm:items-start justify-between">
             <h3 className="flex flex-col w-full h-10 rounded-sm">

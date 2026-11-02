@@ -42,20 +42,37 @@ export async function ProjectDetails({
             {project.excerpt}
           </p>
         </div>
-
-        <img
-          src={project.image?.url}
-          alt={project?.title || project?.slug}
-          className="h-48 w-full border-y-2 border-y-slate-700 bg-contain object-cover shadow-md"
-        />
+        {project.image?.url ? (
+          <img
+            src={project.image?.url}
+            alt={project?.title || project?.slug}
+            className="h-48 w-full border-y-2 border-y-slate-700 bg-contain object-cover shadow-md"
+          />
+        ) : (
+          <div className="bg-slate-200 dark:bg-slate-900 h-48 w-full border-y-2 border-y-slate-700 bg-contain object-cover shadow-md" />
+        )}
 
         <div className="px-5 sm:px-10">
           <h2 className="text-xl/relaxed font-bold capitalize sm:text-2xl/loose">
             {project?.title}
           </h2>
-          <p className="text-md mb-17 font-medium text-slate-600 sm:text-lg dark:text-slate-300">
+          <p className="text-md mb-7 font-medium text-slate-600 sm:text-lg dark:text-slate-300">
             {project?.description}
           </p>
+
+          {project.url ? (
+            <a
+              target="_blank"
+              className="text-sm sm:text-base inline-block shadow-sm cursor-pointer mb-7 bg-blue-500 rounded-sm py-1 px-4 text-slate-50 hover:text-slate-100 hover:bg-blue-600 transition-colors duration-200"
+              href={project.url}
+            >
+              Open URL
+            </a>
+          ) : (
+            <p className="w-fit text-sm sm:text-base shadow-sm cursor-not-allowed mb-7 bg-slate-500 dark:bg-slate-900 rounded-sm py-1 px-4 text-slate-50">
+              The URL for this project is missing
+            </p>
+          )}
 
           <div className="flex items-center justify-between">
             <h3 className="flex flex-col text-lg font-bold sm:text-xl">
