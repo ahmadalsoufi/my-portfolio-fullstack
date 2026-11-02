@@ -7,7 +7,7 @@ import { BLOGS_PER_PAGE } from "@/app/constants";
 
 export async function getLatestBlogs({ latest }: { latest: boolean }) {
   "use cache";
-  cacheLife("days");
+  cacheLife("hours");
 
   try {
     const blogs = await prisma.blog.findMany({
@@ -35,6 +35,9 @@ export async function getBlogs({
   page?: string | null;
   order?: string | null;
 }) {
+  "use cache";
+  cacheLife("hours");
+
   try {
     const blogs = await prisma.blog.findMany({
       where: {

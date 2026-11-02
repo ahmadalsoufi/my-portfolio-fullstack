@@ -9,7 +9,7 @@ import { CategoriesNames } from "@/generated/prisma/enums";
 
 export async function getFeaturedProjects({ featured }: { featured: boolean }) {
   "use cache";
-  cacheLife("days");
+  cacheLife("hours");
 
   try {
     const projects = await prisma.project.findMany({
@@ -36,6 +36,9 @@ export async function getProjects({
   searchQuery?: string | null;
   page?: string | null;
 }) {
+  "use cache";
+  cacheLife("hours");
+
   try {
     const projects = await prisma.project.findMany({
       where: {
@@ -97,7 +100,7 @@ export async function getProject({ slug }: { slug: string }) {
 
 export async function getCategories() {
   "use cache";
-  cacheLife("weeks");
+  cacheLife("hours");
 
   try {
     const categories = await prisma.project.findMany({
