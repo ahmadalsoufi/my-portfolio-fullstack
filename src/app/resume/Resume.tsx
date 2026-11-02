@@ -104,7 +104,7 @@ const Resume = () => {
             <h1 className="text-3xl/tight font-bold capitalize min-[500px]:text-4xl/tight sm:text-5xl/tight print:text-5xl/tight">
               Ahmad Alsoufi
             </h1>
-            <h2 className="text-xl/relaxed font-semibold capitalize sm:text-2xl/relaxed print:text-xl/relaxed">
+            <h2 className="text-xl/relaxed font-semibold capitalize sm:text-2xl/relaxed print:text-2xl/relaxed">
               Web Developer
             </h2>
             <h3 className="text-base/relaxed font-medium capitalize sm:text-lg/relaxed print:text-lg/relaxed text-slate-600">
