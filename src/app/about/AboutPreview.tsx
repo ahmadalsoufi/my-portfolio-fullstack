@@ -45,8 +45,9 @@ const AboutPreview = ({ detailed = false }: { detailed: boolean }) => {
               <p className="text-paragraph mb-5 text-sm sm:text-base dark:text-slate-400">
                 I'm currently available in{" "}
                 <span className="font-medium text-slate-700 dark:text-slate-300">
-                  Abu Dhabi, United Arab Emirates (UAE),
-                </span>
+                  Abu Dhabi, UAE{" "}
+                  <span className="gitracking-wider">(valid visa)</span>.
+                </span>{" "}
               </p>
 
               <div className="flex flex-col items-center justify-center gap-x-5 gap-y-2 sm:flex-row sm:justify-start">
@@ -73,28 +74,16 @@ const AboutPreview = ({ detailed = false }: { detailed: boolean }) => {
             <div>
               <div>
                 <h2 className="text-xl/relaxed font-medium capitalize sm:text-2xl/relaxed dark:text-slate-100">
-                  My next step
+                  Current focus
                 </h2>
                 <p className="text-paragraph mb-10 text-sm sm:text-base dark:text-slate-400">
-                  Over the past two years in university and the time spent after
-                  graduation, I've built a solid{" "}
-                  <span className="font-medium text-slate-700 dark:text-slate-300">
-                    web development{" "}
-                  </span>{" "}
-                  foundation through{" "}
-                  <span className="font-medium text-slate-700 dark:text-slate-300">
-                    hands-on projects.
-                  </span>{" "}
-                  My next step is joining a team of developers, ship{" "}
+                  Having recently relocated to UAE I'm eager to contribute to a
+                  development team where I can apply my skills to
                   <span className="font-medium text-slate-700 dark:text-slate-300">
                     {" "}
-                    real-world applications,{" "}
-                  </span>
-                  and{" "}
-                  <span className="font-medium text-slate-700 dark:text-slate-300">
-                    learn more{" "}
+                    ship real-world applications
                   </span>{" "}
-                  from more experienced developers.
+                  and continue expanding my technical expertise.
                 </p>
               </div>
 
