@@ -43,13 +43,9 @@ const AboutPreview = ({ detailed = false }: { detailed: boolean }) => {
               </p>
 
               <p className="text-paragraph mb-5 text-sm sm:text-base dark:text-slate-400">
-                I'm available in{" "}
+                I'm currently available in{" "}
                 <span className="font-medium text-slate-700 dark:text-slate-300">
                   Abu Dhabi, United Arab Emirates (UAE),
-                </span>{" "}
-                starting{" "}
-                <span className="font-medium text-slate-700 dark:text-slate-300">
-                  November 5 2026.
                 </span>
               </p>
 

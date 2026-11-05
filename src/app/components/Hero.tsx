@@ -20,23 +20,15 @@ const Hero = () => {
             Full-Stack Web Developer
           </h2>
 
-          <p className="mx-auto mb-2 max-w-2xl text-base sm:text-lg dark:text-slate-400">
-            I'm a{" "}
+          <p className="mx-auto mb-5 sm:mb-7 max-w-2xl text-base sm:text-lg dark:text-slate-400 ">
+            Computer Programming graduate based in{" "}
             <span className="font-medium tracking-wide text-slate-700 dark:text-slate-300">
-              computer programming
+              Abu Dhabi, UAE,
             </span>{" "}
-            graduate. I specialize in{" "}
+            specializing in{" "}
             <span className="font-medium tracking-wide text-slate-700 dark:text-slate-300">
               Next.js, Prisma ORM, TypeScript, JavaScript, and TailwindCSS.
             </span>{" "}
-          </p>
-
-          <p className="mb-6 sm:text-sm text-[12px] tracking-widest font-medium text-slate-500 dark:text-slate-400">
-            I'm currently looking to join development teams in{" "}
-            <span className="text-slate-600 font-semibold dark:text-slate-300">
-              Abu Dhabi, United Arab Emirates (UAE)
-            </span>
-            .
           </p>
 
           <div className="flex gap-x-2 sm:gap-x-3 justify-center">
