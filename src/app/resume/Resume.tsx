@@ -56,11 +56,11 @@ const projects = [
   {
     title: "Personal Portfolio",
     texts: [
-      "Architectured a full stack web application using next.js",
+      "A living project that continuously updates with my latest work, tech stack, and my current status",
       "Integrated Prisma ORM for content management and Neon for persistent database storage.",
       "Built a contact form using Next.js server actions and Resend to process and store submissions.",
-      "Designed smooth animated skeletons for a smoother UX.",
-      "Implemented responsive layouts, and appealing designs with Tailwind CSS.",
+      "Applied route caching strategies to deliver instant page loads.",
+      "Implemented animations,  responsive layouts, and appealing designs with Tailwind CSS.",
     ],
     tools: [
       "Next.js",
@@ -105,10 +105,11 @@ const Resume = () => {
               Ahmad Alsoufi
             </h1>
             <h2 className="text-xl/relaxed font-semibold capitalize sm:text-2xl/relaxed print:text-2xl/relaxed">
-              Web Developer
+              Full-Stack Web Developer
             </h2>
             <h3 className="text-base/relaxed font-medium capitalize sm:text-lg/relaxed print:text-lg/relaxed text-slate-600">
-              Abu Dhabi, United Arab Emirates (UAE)
+              Abu Dhabi, United Arab Emirates (UAE) -{" "}
+              <span className="text-[#416541]">valid visa</span>
             </h3>
           </div>
 
@@ -132,15 +133,15 @@ const Resume = () => {
           </ul>
 
           <p className="text-center text-sm sm:text-start print:text-start">
-            I graduated with an associate degree in{" "}
-            <span className="font-medium">Computer Programming.</span> I
-            specialize in web development with modern technologies primarily{" "}
-            <span className="font-medium">Next.js, and TypeScript,</span>I work
-            with <span className="font-medium">Prisma ORM and PostgreSQL</span>{" "}
-            for relational database development, and use tools including{" "}
+            A computer programming graduate specializing in web development with
+            modern technologies primariy{" "}
+            <span className="font-medium">Next.js, and TypeScript, </span> I
+            work with{" "}
+            <span className="font-medium">Prisma ORM and PostgreSQL</span> for
+            relational database development, and use tools including{" "}
             <span className="font-medium">Git, GitHub, and Vercel</span> to
             manage and deploy{" "}
-            <span className="font-medium">full stack applications.</span>
+            <span className="font-medium">full-stack applications.</span>
           </p>
         </div>
 
