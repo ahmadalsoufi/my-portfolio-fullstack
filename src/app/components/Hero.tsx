@@ -4,8 +4,13 @@ import { PiHandWavingBold } from "react-icons/pi";
 const Hero = () => {
   return (
     <>
-      <div className="dark:slate-50 bg-slate-50 px-5 py-10 shadow-sm sm:py-20 dark:bg-slate-800">
-        <div className="mx-auto max-w-5xl space-y-1">
+      <div className="relative h-[calc(90vh-50px)] flex flex-col justify-center dark:slate-50 bg-slate-50 px-5 py-10 shadow-sm sm:py-20 dark:bg-slate-800">
+        <img
+          src="/UaeFlagDesign.png"
+          alt=""
+          className="object-cover object-center absolute object-fit right-0 h-full w-full z-5 opacity-50"
+        />
+        <div className="relative z-10 mx-auto max-w-5xl space-y-1">
           <h1 className="mb-1 flex justify-center items-center flex-col gap-x-3 text-3xl font-bold capitalize sm:text-4xl text-slate-700 dark:text-slate-300">
             <span className="flex gap-x-2 text-2xl font-medium sm:text-3xl">
               Hey <PiHandWavingBold />

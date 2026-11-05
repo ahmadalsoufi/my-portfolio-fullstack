@@ -16,9 +16,9 @@ import ErrorUI from "./ErrorUI";
 export default async function HomePage() {
   return (
     <>
-      <div className="mb-15">
+      <section className="mb-15">
         <Hero />
-      </div>
+      </section>
 
       <div className="m-5">
         <section className="mx-auto flex max-w-5xl flex-col justify-center space-y-15">
