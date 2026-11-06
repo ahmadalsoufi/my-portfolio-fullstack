@@ -4,7 +4,7 @@
 
 An end-to-end full-stack web app portfolio that utilizes modern technologies and is built with a clean, maintainable architecture.
 
-**[Live Portfolio](https://ahmadalsoufi.com) · [LinkedIn](https://www.linkedin.com/in/ahmadalsoufi/)**
+**[Live Portfolio](https://ahmadalsoufi.com)**
 
 ## Technologies used to build my portfolio web app
 
