@@ -14,16 +14,20 @@ export const metadata: Metadata = {
 
 const myInfo = [
   {
-    label: "linkedin.com/in/ahmadalsoufi",
-    href: "https://www.linkedin.com/in/ahmadalsoufi/",
-  },
-  {
-    label: "GitHub.com/ahmadalsoufi",
-    href: "https://GitHub.com/ahmadalsoufi",
+    label: "+971 58 126 4691",
+    href: "tel:+971581264691",
   },
   {
     label: "ahmad.s.alsoufi@gmail.com",
     href: "mailto:ahmad.s.alsoufi@gmail.com",
+  },
+  {
+    label: "linkedin.com/in/ahmadalsoufi",
+    href: "https://www.linkedin.com/in/ahmadalsoufi/",
+  },
+  {
+    label: "github.com/ahmadalsoufi",
+    href: "https://github.com/ahmadalsoufi",
   },
 ];
 
@@ -99,7 +103,7 @@ const Resume = () => {
         print resume
       </button>
       <main className="box-border max-w-[210mm] bg-slate-50 p-[10mm] sm:p-[12mm] text-sm shadow-md sm:rounded-lg print:m-0 print:w-[210mm] print:overflow-hidden print:rounded-none print:p-[12mm] print:shadow-none">
-        <div className="mb-4">
+        <div className="mb-3">
           <div className="border-b-md mx-auto mb-2 w-fit py-[1mm] text-center">
             <h1 className="text-3xl/tight font-bold capitalize min-[500px]:text-4xl/tight sm:text-5xl/tight print:text-5xl/tight">
               Ahmad Alsoufi
@@ -113,9 +117,9 @@ const Resume = () => {
             </h3>
           </div>
 
-          <ul className="mb-4 flex flex-col items-center justify-center space-y-2 gap-x-2 md:flex-row md:space-y-0 print:flex-row print:space-y-0">
+          <ul className="mb-3 flex flex-col gap-x-1 items-center justify-center space-y-2 md:flex-row md:space-y-0 print:flex-row print:space-y-0">
             {myInfo.map((info, index) => (
-              <li key={info.label}>
+              <li key={info.label} className="shrink-0 space-x-1">
                 <a
                   title={info.label}
                   href={info.href}
@@ -126,7 +130,7 @@ const Resume = () => {
                   {info.label}
                 </a>
                 {index < myInfo.length - 1 && (
-                  <span className="hidden md:inline print:inline"> - </span>
+                  <span className="hidden md:inline print:inline">-</span>
                 )}
               </li>
             ))}
