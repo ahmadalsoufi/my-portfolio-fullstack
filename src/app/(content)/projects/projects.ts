@@ -116,3 +116,7 @@ export async function getCategories() {
     throw new Error("Failed to load categories!");
   }
 }
+
+export async function getProjectsSlugs() {
+  return await prisma.project.findMany({ select: { slug: true } });
+}

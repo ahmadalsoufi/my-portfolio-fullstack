@@ -4,8 +4,10 @@ import ReactMarkdown from "react-markdown";
 import GoBackBtn from "@/app/components/GoBackBtn";
 import { Suspense } from "react";
 import BlogSkeleton from "./skeleton";
-import { getBlog } from "../blogs";
+import { getBlog, getBlogsSlugs } from "../blogs";
 import { notFound } from "next/navigation";
+
+export const generateStaticParams = async () => await getBlogsSlugs();
 
 export default async function GetBlogsDetailsPage({
   params,

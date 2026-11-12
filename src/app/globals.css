@@ -10,8 +10,9 @@
 
 @layer base {
   h1 {
-    @apply text-2xl font-medium sm:text-3xl;
+    @apply text-2xl font-bold sm:text-3xl;
   }
+
   p {
     @apply text-sm sm:text-lg;
   }

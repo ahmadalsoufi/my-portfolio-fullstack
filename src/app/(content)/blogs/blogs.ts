@@ -98,3 +98,7 @@ export async function getBlog({ slug }: { slug: string }) {
     throw new Error("Failed to load blog!");
   }
 }
+
+export async function getBlogsSlugs() {
+  return await prisma.blog.findMany({ select: { slug: true } });
+}

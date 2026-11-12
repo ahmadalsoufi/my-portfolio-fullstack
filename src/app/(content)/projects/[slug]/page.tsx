@@ -5,8 +5,10 @@ import GoBackBtn from "@/app/components/GoBackBtn";
 import { ProjectType } from "@/app/types";
 import { Suspense } from "react";
 import ProjectSkeleton from "./skeleton";
-import { getProject } from "../projects";
+import { getProject, getProjectsSlugs } from "../projects";
 import { notFound } from "next/navigation";
+
+export const generateStaticParams = async () => await getProjectsSlugs();
 
 export default async function GetProjectDetails({
   params,
