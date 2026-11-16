@@ -14,58 +14,82 @@ export const metadata: Metadata = {
 
 const myInfo = [
   {
-    text: "Mobile",
     label: "+971 58 126 4691",
     href: "tel:+971581264691",
   },
   {
-    text: "Email",
     label: "ahmad.s.alsoufi@gmail.com",
     href: "mailto:ahmad.s.alsoufi@gmail.com",
   },
   {
-    text: "linkedIn",
     label: "linkedin.com/in/ahmadalsoufi",
     href: "https://www.linkedin.com/in/ahmadalsoufi/",
+  },
+  {
+    label: "github.com/ahmadalsoufi",
+    href: "https://github.com/ahmadalsoufi",
   },
 ];
 
 const coursework = [];
 
 const skills = {
-  computer: [
-    "General computer literacy",
-    "Web development",
-    "Programming",
-    "Databases",
+  fullstack: [
+    "HTML",
+    "CSS",
+    "Tailwind CSS",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Postgresql",
+    "prisma orm",
   ],
-  professional: [
-    "Problem solving",
-    "Communication",
-    "organization",
-    "Adabtability",
-    "Teamwork",
+  tools: [
+    "Git",
+    "GitHub",
+    "Strapi (CMS)",
+    "Neon (Serverless DB)",
+    "cloudinary",
+    "vercel",
   ],
-  languages: ["Arabic (Native)", "English (Fluent)"],
 };
+const languages = ["arabic", "english"];
 
 const projects = [
   {
     title: "Personal Portfolio",
     texts: [
-      "Independently planned, structured, and designed a website that showcases my web development skills.",
-      "Managed the project from initial development through deployment.",
-      "Implemented SEO best practices for improved search visibility and website discoverability.",
-      "Designed and implemented its database structure.",
+      "A living project that continuously updates with my latest work, tech stack, and my current status",
+      "Integrated Prisma ORM for content management and Neon for persistent database storage.",
+      "Built a contact form using Next.js server actions and Resend to process and store submissions.",
+      "Applied route caching strategies to deliver instant page loads.",
+      "Implemented animations,  responsive layouts, and appealing designs with Tailwind CSS.",
     ],
+    tools: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Tailwind CSS",
+      "Neon",
+      "Resend",
+    ],
+    fullstack: false,
+    url: "https://ahmadalsoufi.com",
+    github: "https://GitHub.com/ahmadalsoufi/my-portfolio-fullstack",
   },
   {
     title: "Custom Landing Page",
     texts: [
-      "Designed and developed an engaging landing page focused on user experience and customer engagement.",
-      "Structured the codebase to make content and design modifications straightforward and maintainable.",
-      "Implemented responsive layouts for different screen sizes.",
+      "Responsive design layouts with HTML and CSS.",
+      "Appealing and smooth behavior with features such as custom lazy loading added via Vanilla JavaScript.",
+      "Focused on appealing user experience (UX) and user interface (UI).",
     ],
+    fullstack: false,
+    url: null,
+    github: "https://GitHub.com/ahmadalsoufi/landing-page",
+    tools: ["HTML", "CSS", "JavaScript"],
   },
 ];
 
@@ -80,45 +104,22 @@ const Resume = () => {
       </button>
       <main className="box-border max-w-[210mm] bg-slate-50 p-[10mm] sm:p-[12mm] text-sm shadow-md sm:rounded-lg print:m-0 print:w-[210mm] print:overflow-hidden print:rounded-none print:p-[12mm] print:shadow-none">
         <div className="mb-3">
-          <div className="flex items-center justify-center gap-x-7 mb-3">
-            {/* <img
-              src="/Ahmad Saed Aref Alsoufi.jpg"
-              alt=""
-              className="w-40 h-40 object-contain object-start rounded-full border-3 border-blue-500 border-solid shadow-lg"
-            /> */}
-
-            <div className="">
-              <div className="border-b-md mx-auto w-fit py-[1mm] text-center">
-                <h1 className="text-3xl/tight font-bold capitalize min-[500px]:text-4xl/tight sm:text-5xl/tight print:text-5xl/tight">
-                  Ahmad Alsoufi
-                </h1>
-                <h2 className="text-xl/relaxed font-semibold capitalize sm:text-2xl/relaxed print:text-2xl/relaxed">
-                  Computer programming graduate
-                </h2>
-                <h3 className="text-base/relaxed font-medium capitalize sm:text-lg/relaxed print:text-lg/relaxed text-slate-600">
-                  Abu Dhabi, United Arab Emirates (UAE){" "}
-                </h3>
-              </div>
-            </div>
+          <div className="border-b-md mx-auto mb-2 w-fit py-[1mm] text-center">
+            <h1 className="text-3xl/tight font-bold capitalize min-[500px]:text-4xl/tight sm:text-5xl/tight print:text-5xl/tight">
+              Ahmad Alsoufi
+            </h1>
+            <h2 className="text-xl/relaxed font-semibold capitalize sm:text-2xl/relaxed print:text-2xl/relaxed">
+              Full-Stack Software Developer
+            </h2>
+            <h3 className="text-base/relaxed font-medium capitalize sm:text-lg/relaxed print:text-lg/relaxed text-slate-600">
+              Abu Dhabi, United Arab Emirates (UAE) -{" "}
+              <span className="text-[#416541]">valid visa</span>
+            </h3>
           </div>
 
-          <p className="text-center text-sm sm:text-start print:text-start mb-2">
-            A graduate with a background in web development and an experience to
-            plan, build, and manage digital products independently. Adaptable,
-            organized, and comfortable working with technology, solving
-            problems, and learning new processes. Seeking an opportunity to
-            contribute to a professional team and develop practical workplace
-            experience.
-          </p>
-
-          {/* Contact Section */}
-          <h2 className="border-b-sm text-3xl/normal font-medium text-blue-500 capitalize">
-            Contact
-          </h2>
-          <ul className="space-y-1 py-2">
+          <ul className="mb-3 flex flex-col gap-x-1 items-center justify-center space-y-2 md:flex-row md:space-y-0 print:flex-row print:space-y-0">
             {myInfo.map((info, index) => (
-              <li key={info.label} className="flex space-x-1">
-                <p className="text-sm font-medium">{info.text}:</p>
+              <li key={info.label} className="shrink-0 space-x-1">
                 <a
                   title={info.label}
                   href={info.href}
@@ -128,22 +129,33 @@ const Resume = () => {
                 >
                   {info.label}
                 </a>
+                {index < myInfo.length - 1 && (
+                  <span className="hidden md:inline print:inline">-</span>
+                )}
               </li>
             ))}
           </ul>
-          <p className="capitalize text-sm">
-            <span className="text-sm font-medium">Visa & Availability: </span>{" "}
-            Abu Dhabi, UAE | Multiple-Entry Visit Visa.
+
+          <p className="text-center text-sm sm:text-start print:text-start">
+            Computer programming graduate specializing in software engineering
+            with modern technologies primariy{" "}
+            <span className="font-medium">Next.js, and TypeScript, </span> I
+            work with{" "}
+            <span className="font-medium">Prisma ORM and PostgreSQL</span> for
+            relational database development, and use tools including{" "}
+            <span className="font-medium">Git, GitHub, and Vercel</span> to
+            manage and deploy{" "}
+            <span className="font-medium">full-stack applications.</span>
           </p>
         </div>
 
         {/* skills section */}
-        <div className="mb-3 text-sm">
+        <div className="mb-4 text-sm">
           <h2 className="border-b-sm text-3xl/normal font-medium text-blue-500 capitalize">
             Skills
           </h2>
 
-          <div className="">
+          <div className="grid space-y-1.5">
             {Object.entries(skills).map((skillsPairs) => (
               <div key={skillsPairs[0][0]}>
                 <h3 className="mt-1 text-lg/relaxed font-medium capitalize">
@@ -164,18 +176,44 @@ const Resume = () => {
         </div>
 
         {/* Projects section */}
-        <div className="mb-3 text-sm">
+        <div className="mb-4 text-sm">
           <h2 className="border-b-sm text-3xl/normal font-medium text-blue-500 capitalize">
             Projects
           </h2>
 
-          <ul className="">
+          <ul className="space-y-3">
             {projects.map((project) => (
               <li key={project.title}>
                 <h3 className="mt-1 text-xl/normal font-medium capitalize flex flex-col sm:flex-row sm:justify-between sm:items-center print:flex-row print:justify-between print:items-center">
                   {project.title}{" "}
+                  <div className="text-blue-500 text-base mb-2 sm:mb-0 print:mb-0">
+                    {project.url && (
+                      <>
+                        <a target="_blank" href={project.url}>
+                          View live
+                        </a>
+                        <span className="text-slate-500"> | </span>
+                      </>
+                    )}
+                    <a target="_blank" href={project.github}>
+                      GitHub
+                    </a>
+                  </div>
                 </h3>
+                <ul className="flex gap-2 text-sm/tight mb-3 flex-wrap">
+                  {project.tools.map((tool, i) => (
+                    <li key={tool} className="font-medium tracking-wider">
+                      {tool}
+                      {i + 1 < project.tools.length ? "," : "."}
+                    </li>
+                  ))}
+                </ul>
 
+                {project.fullstack ? (
+                  <h4 className="text-sm/normal tracking-wide font-medium capitalize text-slate-500">
+                    Full-stack Web Application
+                  </h4>
+                ) : null}
                 <ul>
                   {project.texts.map((text) => (
                     <li key={text} className="ml-5 list-disc text-sm/relaxed">
@@ -189,7 +227,7 @@ const Resume = () => {
         </div>
 
         {/* Education section */}
-        <div className="mb-3 text-sm">
+        <div className="mb-4 text-sm">
           <h2 className="border-b-sm text-3xl/normal font-medium text-blue-500 capitalize">
             Education
           </h2>
@@ -200,15 +238,31 @@ const Resume = () => {
             </h3>
 
             <div>
-              <p className="text-sm flex justify-between">
-                Istanbul Aydin University - Istanbul Türkiye{" "}
-                <span>2024-2026</span>
-              </p>
+              <h4 className="text-sm">
+                Istanbul Aydin University - Istanbul, Türkiye
+              </h4>
+              <p className="text-sm">2024-2026</p>
               <p className="text-sm">
                 GPA: <span className="font-bold">3.22/4</span>
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Languages section */}
+        <div className="text-sm">
+          <h2 className="border-b-sm text-3xl/normal font-medium text-blue-500 capitalize">
+            languages
+          </h2>
+
+          <ul className="flex space-x-2">
+            {languages.map((language, index) => (
+              <li key={language} className="text-sm capitalize">
+                {language}
+                {index < languages.length - 1 && <span>, </span>}
+              </li>
+            ))}
+          </ul>
         </div>
       </main>
     </>
